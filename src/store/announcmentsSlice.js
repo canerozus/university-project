@@ -29,12 +29,12 @@ const initialState = {
   ],
 };
 
-const activitiesSlice = createSlice({
-  name: "activities",
+const announcementsSlice = createSlice({
+  name: "announcements",
   initialState,
   reducers: {},
 });
 
 // Action creators are generated for each case reducer function
 
-export default activitiesSlice.reducer;
+export default announcementsSlice.reducer;
