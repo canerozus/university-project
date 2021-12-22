@@ -10,14 +10,13 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        
         <Routes>
           <Route
             path="/login"
             element={loggedIn ? <Navigate to="/" /> : <Login />}
           />
           <Route
-            path="/"
+            path="/*"
             element={
               <RequireAuth loggedIn={loggedIn}>
                 <Navbar/>

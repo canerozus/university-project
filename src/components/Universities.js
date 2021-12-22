@@ -1,7 +1,7 @@
 import { Box, Container } from "@mui/material";
 import React from "react";
 import universityData from "../data";
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 
 export default function Universities() {
   return (
@@ -15,15 +15,17 @@ export default function Universities() {
         alignItems: "center",
         justifyContent: "center",
         flexWrap: "wrap",
-        boxShadow:'-2px 0px 7px 5px #aaaaaa;'
+        boxShadow:'-2px 0px 7px 5px #aaaaaa;',
+        overflow: "scroll",
       }}
     >
       {universityData.map((item, index) => {
         {
-          console.log(item);
         }
         return (
-          <Link to={`/university/${index}`}
+          <Link
+            key={index}
+            to={`/${index}`}
             style={{
               width: "350px",
               height: "350px",
