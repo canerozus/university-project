@@ -8,10 +8,18 @@ export default function Clubs() {
       style={{
         m: 0,
         display: "flex",
-        backgroundImage: `url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCidJKHciuYbnoJnOMQp0h5eEa49ZAQkIiDA&usqp=CAU)`,
-        width: "100vh",
-        height: "100vh",
-        backgroundRepeat: "no-repeat",
+
+        width: "100%",
+        height: "100%",
+
+        '&::before': {
+         
+          content: '""',
+          top: "0px",
+          bottom: "0px",
+          right: "0px",
+          left: "0px",
+        },
       }}
     ></Box>
   );
