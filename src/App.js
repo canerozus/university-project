@@ -1,23 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { BrowserRouter } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Login from "./Pages/Login";
+import { Router, Switch } from 'react-router-dom';
+import { useState } from "react";
 function App() {
+
+  const adminUser = {
+    username: 'admin',
+    password: '1234'
+  }
+  const [user, setUser] = useState({ username: '', password: '' });
+  const [Isloggedin, setIsloggedin] = useState(false)
+
+  const login = details => {
+    console.log(details)
+    if (details.username == adminUser.username && details.password == adminUser.password) {
+      console.log('logged in');
+      setUser({
+        username:details.username,
+        password: details.password
+      })
+      
+    } else {
+      console.log('Details not match!')
+    }
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {(user.username !== '') ? (
+        <Navbar />
+      ) : (
+        <Login Login={login} />
+      )}
     </div>
   );
 }
