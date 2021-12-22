@@ -20,7 +20,8 @@ import { Avatar, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import EventIcon from "@mui/icons-material/Event";
 import PeopleIcon from "@mui/icons-material/People";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../store/userSlice";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -64,6 +65,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function PrimarySearchAppBar() {
   const { profilPicture } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -86,7 +89,7 @@ export default function PrimarySearchAppBar() {
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
-  const navigate = useNavigate();
+ 
 
   const menuId = "primary-search-account-menu";
   const renderMenu = (
@@ -107,6 +110,14 @@ export default function PrimarySearchAppBar() {
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem
+        onClick={() => {
+          dispatch(logout());
+          navigate("/login");
+        }}
+      >
+        Logut
+      </MenuItem>
     </Menu>
   );
 
