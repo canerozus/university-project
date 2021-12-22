@@ -1,9 +1,10 @@
-import React from 'react'
+import React from "react";
+import Clubs from "../components/Clubs";
 
 export default function Dashboard() {
-    return (
-        <div>
-            <h1>HELLOOOO</h1>
-        </div>
-    )
+  return (
+    <div style={{ width: "100%", height: "100vh" }}>
+      <Clubs />
+    </div>
+  );
 }
