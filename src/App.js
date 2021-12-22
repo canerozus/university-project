@@ -15,7 +15,10 @@ function App() {
 =======
 >>>>>>> 8a2e3a2f05e7c824c816447ec530a16fc9e5f4b7
         <Routes>
-          <Route path="/login" element={<Login />} />
+          <Route
+            path="/login"
+            element={loggedIn ? <Navigate to="/" /> : <Login />}
+          />
           <Route
             path="/"
             element={
