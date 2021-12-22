@@ -8,7 +8,7 @@ const initialState = {
       title: "Bilkent YES",
       announcment:
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-      sent: new Date(),
+      sent: '1 week ago',
     },
     {
       clubImg:
@@ -16,7 +16,7 @@ const initialState = {
       title: "MT Bilkent",
       announcment:
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-      sent: new Date(),
+      sent: '2 weeks ago',
     },
     {
       clubImg:
@@ -24,7 +24,7 @@ const initialState = {
       title: "DSC Club",
       announcment:
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-      sent: new Date(),
+      sent: '2 weeks ago',
     },
   ],
 };
