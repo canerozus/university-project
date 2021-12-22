@@ -21,11 +21,19 @@ const universityData = [
           contactDesc:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
         },
-        announcements: {
-          announcmentDesc:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-          sent: new Date(),
-        },
+        announcements: [
+          {
+            announcmentDesc:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+            sent: new Date(),
+          },
+          {
+            announcmentDesc:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+            sent: new Date(),
+          },
+        ],
+        acceptOthers: true,
       },
       {
         clubImg:
@@ -42,11 +50,19 @@ const universityData = [
           contactDesc:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
         },
-        announcements: {
-          announcmentDesc:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-          sent: new Date(),
-        },
+        announcements: [
+          {
+            announcmentDesc:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+            sent: new Date(),
+          },
+          {
+            announcmentDesc:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+            sent: new Date(),
+          },
+        ],
+        acceptOthers: true,
       },
       {
         clubImg:
@@ -63,11 +79,19 @@ const universityData = [
           contactDesc:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
         },
-        announcements: {
-          announcmentDesc:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-          sent: new Date(),
-        },
+        announcements: [
+          {
+            announcmentDesc:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+            sent: new Date(),
+          },
+          {
+            announcmentDesc:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+            sent: new Date(),
+          },
+        ],
+        acceptOthers: true,
       },
     ],
   },
@@ -91,11 +115,19 @@ const universityData = [
           contactDesc:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
         },
-        announcements: {
-          announcmentDesc:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-          sent: new Date(),
-        },
+        announcements: [
+          {
+            announcmentDesc:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+            sent: new Date(),
+          },
+          {
+            announcmentDesc:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+            sent: new Date(),
+          },
+        ],
+        acceptOthers: true,
       },
       {
         clubImg:
@@ -112,11 +144,19 @@ const universityData = [
           contactDesc:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
         },
-        announcements: {
-          announcmentDesc:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-          sent: new Date(),
-        },
+        announcements: [
+          {
+            announcmentDesc:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+            sent: new Date(),
+          },
+          {
+            announcmentDesc:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+            sent: new Date(),
+          },
+        ],
+        acceptOthers: false,
       },
       {
         clubImg:
@@ -133,11 +173,19 @@ const universityData = [
           contactDesc:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
         },
-        announcements: {
-          announcmentDesc:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-          sent: new Date(),
-        },
+        announcements: [
+          {
+            announcmentDesc:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+            sent: new Date(),
+          },
+          {
+            announcmentDesc:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+            sent: new Date(),
+          },
+        ],
+        acceptOthers: false,
       },
     ],
   },

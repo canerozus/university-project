@@ -16,7 +16,7 @@ export default function Universities() {
         justifyContent: "center",
         flexWrap: "wrap",
         boxShadow:'-2px 0px 7px 3px #aaaaaa;',
-        overflow: "scroll",
+        overflowY: "scroll",
       }}
     >
       {universityData.map((item, index) => {
