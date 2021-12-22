@@ -5,8 +5,8 @@ const universityData = [
     name: "Bilkent University",
     logo: "https://w3.bilkent.edu.tr/logo/ing-amblem.png",
     bg: "https://www.remzihoca.com/storage/contents/1600171821-757171.jpg",
-    clubs: {
-      [uuidv4()]: {
+    clubs: [
+      {
         clubImg:
           "https://pbs.twimg.com/profile_images/480050296702259200/mag5F_xR_400x400.png",
         clubName: "MT Bilkent",
@@ -27,7 +27,7 @@ const universityData = [
           sent: new Date(),
         },
       },
-      [uuidv4()]: {
+      {
         clubImg:
           "https://pbs.twimg.com/profile_images/1083258175963447296/ZBxRqk5o_400x400.jpg",
         clubName: "Outdoor Sports",
@@ -48,7 +48,7 @@ const universityData = [
           sent: new Date(),
         },
       },
-      [uuidv4()]: {
+      {
         clubImg:
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_fDnrffcoVUYZBH_WLWJg72n4QXuf_K3ZDQ&usqp=CAU",
         clubName: "Google Developer Student Clubs",
@@ -69,14 +69,14 @@ const universityData = [
           sent: new Date(),
         },
       },
-    },
+    ],
   },
   {
     name: "Istanbul Technical University",
     logo: "https://upload.wikimedia.org/wikipedia/en/thumb/c/c6/Istanbul_Technical_University_emblem.svg/1200px-Istanbul_Technical_University_emblem.svg.png",
     bg: "https://www.remzihoca.com/storage/contents/1600952265-962331.jpg",
-    clubs: {
-      [uuidv4()]: {
+    clubs: [
+      {
         clubImg:
           "https://yt3.ggpht.com/ytc/AKedOLTYHv-q5_DSi0zRGNOS9KZZte6j0K4MONB8bWtdkQ=s900-c-k-c0x00ffffff-no-rj",
         clubName: "MT ITU",
@@ -97,7 +97,7 @@ const universityData = [
           sent: new Date(),
         },
       },
-      [uuidv4()]: {
+      {
         clubImg:
           "https://mir-s3-cdn-cf.behance.net/project_modules/fs/85b79097876423.5ed46890ad61a.png",
         clubName: "English Speaking Club",
@@ -118,7 +118,7 @@ const universityData = [
           sent: new Date(),
         },
       },
-      [uuidv4()]: {
+      {
         clubImg:
           "https://itukuluplerbirligi.com/wp-content/uploads/2019/11/itubees-logo1.png",
         clubName: "ITU Bees",
@@ -139,7 +139,7 @@ const universityData = [
           sent: new Date(),
         },
       },
-    },
+    ],
   },
 ];
 export default universityData;
