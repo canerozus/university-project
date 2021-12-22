@@ -6,6 +6,7 @@ export default function Clubs() {
     <Box
       sx={{        
         height: "100%",
+        
         ":hover": {
           
         },
@@ -15,7 +16,7 @@ export default function Clubs() {
           
           left: 0,
           top: 0,
-          width: "100%",
+          width: "80%",
           height: "100%",
           opacity: 0.6,
           backgroundImage:
