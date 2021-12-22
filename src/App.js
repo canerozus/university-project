@@ -16,13 +16,14 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <Navbar />
+        
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route
             path="/"
             element={
               <RequireAuth loggedIn={loggedIn}>
+                <Navbar />
                 <Dashboard />
               </RequireAuth>
             }
