@@ -13,6 +13,7 @@ export default function Dashboard() {
         <Routes>
           <Route path="/" element={<Universities />} />
           <Route path="/:id" element={<Clubs />} />
+          
         </Routes>
       </Box>
     </div>

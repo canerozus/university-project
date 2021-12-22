@@ -1,13 +1,24 @@
+import { Fab, IconButton, Modal, Typography } from "@material-ui/core";
 import { Image } from "@material-ui/icons";
-import { Avatar, Box } from "@mui/material";
+import { Avatar, Box, Stack } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import universityData from "../data";
+import HomeIcon from "@mui/icons-material/Home";
+import EventIcon from "@mui/icons-material/Event";
+import PeopleIcon from "@mui/icons-material/People";
+import SettingsIcon from "@mui/icons-material/Settings";
+import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
+import CloseIcon from "@mui/icons-material/Close";
+import ClubModal from "./ClubModal";
+import AddIcon from "@mui/icons-material/Add";
 
 export default function Clubs() {
   const location = useLocation().pathname.split("/")[1];
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState(null);
+  const [modalData, setModalData] = useState(null);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     setData(universityData[location]);
@@ -16,8 +27,8 @@ export default function Clubs() {
   }, [location]);
 
   useEffect(() => {
-    console.log(data?.bg);
-  }, [data]);
+    console.log(open);
+  }, [open]);
 
   useEffect(() => {
     console.log(location);
@@ -54,11 +65,7 @@ export default function Clubs() {
             />
           </Box>
         </Box>
-        <Box
-          sx={{
-            overflow: "hidden",
-          }}
-        >
+        <Box sx={{}}>
           <Box
             sx={{
               px: 30,
@@ -72,7 +79,6 @@ export default function Clubs() {
             }}
           >
             {data.clubs.map((item, index) => {
-              console.log(item);
               return (
                 <Box
                   key={index}
@@ -82,6 +88,11 @@ export default function Clubs() {
                     border: "solid 3px black",
                     margin: "15px",
                     padding: "30px",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => {
+                    setModalData(item);
+                    setOpen(true);
                   }}
                 >
                   <Box
@@ -96,10 +107,40 @@ export default function Clubs() {
                   ></Box>
                 </Box>
               );
-            })}            
-            
+            })}
           </Box>
         </Box>
+        <ClubModal modalData={modalData} open={open} setOpen={setOpen} />
+        <Stack
+          direction="row"
+          spacing={1.5}
+          sx={{
+            position: "absolute",
+            bottom: 50,
+            right: 50,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            cursor:'pointer'
+          }}
+        >
+          <Box
+            sx={{
+              width: "50px",
+              height: "50px",
+              backgroundColor: "blue",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              borderRadius: "50%",
+            }}
+          >
+            <AddIcon sx={{ color: "white", fontSize: "36px" }} />
+          </Box>
+          <Typography variant="h5">
+            <span style={{ color: "blue", fontWeight:'bold' }}>Create a Club</span>
+          </Typography>
+        </Stack>
       </Box>
     )
   );

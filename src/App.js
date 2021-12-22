@@ -9,7 +9,7 @@ function App() {
   const { loggedIn } = useSelector((state) => state.user);
   return (
     <BrowserRouter>
-      <div className="App">
+      <div className="App" style={{ overflow: "hidden" }}>
         <Routes>
           <Route
             path="/login"
@@ -19,7 +19,7 @@ function App() {
             path="/*"
             element={
               <RequireAuth loggedIn={loggedIn}>
-                <Navbar/>
+                <Navbar />
                 <Dashboard />
               </RequireAuth>
             }
