@@ -40,7 +40,7 @@ function Sidebar() {
                 <Box sx={{ backgroundColor: 'white', display: 'flex', alignItems: 'center',  overflowY:'scroll', justifyContent: 'center', flexDirection: 'column',  }}>
                     {activities.map(item => {
                         return (
-                            <Box sx={{ display: 'flex', flexDirection: 'row', WebkitBoxShadow: '4px 4px 10px -5px #888', padding: '5%' }}>
+                            <Box sx={{ display: 'flex', flexDirection: 'row', WebkitBoxShadow: '4px 4px 10px -5px #888', padding: '5%', width:'100%' }}>
                                 <img alt='activity' src={item.clubImg} width='20%' />
                                 <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', width: '100%' }}>
                                     <h4 style={{ margin: 0 }}>{item.title}</h4>
