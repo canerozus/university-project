@@ -14,7 +14,8 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../store/userSlice";
-import { Alert, Snackbar } from "@mui/material";
+import { Alert, Snackbar, SnackbarContent } from "@mui/material";
+import CloseIcon from '@mui/icons-material/Close';
 
 function Login() {
   const paperStyle = {
@@ -42,6 +43,13 @@ function Login() {
     setUsername("");
     setPassword("");
   };
+
+  const action = (
+    <Button color="secondary" size="small" onClick={() => setError(false)}>
+      <CloseIcon/>
+    </Button>
+  );
+
   return (
     <>
       <form onSubmit={onSubmit}>
@@ -95,13 +103,7 @@ function Login() {
         </Grid>
         {error && (
           <Box sx={{ display: "flex", justifyContent: "center" }}>
-            <Snackbar
-              open={error}
-              onClose={() => {
-                setError(false);
-              }}
-              message="I love snacks"
-            />
+            <SnackbarContent message="Wrong Username or Password" action={action} />
           </Box>
         )}
       </form>

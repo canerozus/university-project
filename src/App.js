@@ -5,7 +5,7 @@ import { Router, Switch, BrowserRouter } from "react-router-dom";
 function App() {
   return (
     <div className="App">
-        <Navbar />
+      <Navbar />
 
       <Login />
     </div>
