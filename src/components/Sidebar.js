@@ -5,7 +5,7 @@ import { styled } from '@mui/material/styles';
 import { useDispatch, useSelector } from "react-redux";
 import activitiesSlice from "../store/activitiesSlice";
 import announcmentsSlice from '../store/announcmentsSlice';
-import { CenterFocusStrong } from '@material-ui/icons';
+
 
 const Div = styled('div')(({ theme }) => ({
     ...theme.typography.button,
