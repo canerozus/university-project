@@ -15,7 +15,7 @@ export default function Universities() {
         alignItems: "center",
         justifyContent: "center",
         flexWrap: "wrap",
-        boxShadow:'-2px 0px 7px 5px #aaaaaa;',
+        boxShadow:'-2px 0px 7px 3px #aaaaaa;',
         overflow: "scroll",
       }}
     >
