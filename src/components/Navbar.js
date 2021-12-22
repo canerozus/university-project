@@ -89,7 +89,6 @@ export default function PrimarySearchAppBar() {
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
- 
 
   const menuId = "primary-search-account-menu";
   const renderMenu = (
@@ -174,8 +173,8 @@ export default function PrimarySearchAppBar() {
   );
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+    <Box sx={{ flexGrow: 1, height: "7vh" }}>
+      <AppBar position="static" sx={{ }}>
         <Toolbar>
           <IconButton
             size="large"
