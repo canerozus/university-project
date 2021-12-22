@@ -10,6 +10,10 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
+<<<<<<< HEAD
+        
+=======
+>>>>>>> 8a2e3a2f05e7c824c816447ec530a16fc9e5f4b7
         <Routes>
           <Route
             path="/login"
