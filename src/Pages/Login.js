@@ -1,31 +1,28 @@
-import React, { useState } from "react";
-import {
-  Grid,
-  Paper,
-  Avatar,
-  TextField,
-  Button,
-  Typography,
-  Link,
-  Box,
-} from "@material-ui/core";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../store/userSlice";
 import { Alert, Snackbar, SnackbarContent } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 
-function Login() {
-  const paperStyle = {
-    padding: 20,
-    height: "70vh",
-    width: 280,
-    margin: "20px auto",
-  };
-  const avatarStyle = { backgroundColor: "#1bbd7e" };
-  const btnstyle = { margin: "8px 0" };
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Link from '@mui/material/Link';
+import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useState } from "react";
+
+
+
+const theme = createTheme();
+
+export function Login() {
   const [error, setError] = useState(false);
   const { loggedIn } = useSelector((state) => state.user);
   const [username, setUsername] = useState("");
@@ -39,6 +36,7 @@ function Login() {
       setError(true);
     } else {
       setError(false);
+      
     }
     setUsername("");
     setPassword("");
@@ -49,65 +47,100 @@ function Login() {
       <CloseIcon/>
     </Button>
   );
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    // eslint-disable-next-line no-console
+    console.log({
+      email: data.get('email'),
+      password: data.get('password'),
+    });
+  };
 
   return (
-    <>
-      <form onSubmit={onSubmit}>
-        <Grid>
-          <Paper elevation={10} style={paperStyle}>
-            <Grid align="center">
-              <Avatar style={avatarStyle}>
-                <LockOutlinedIcon />
-              </Avatar>
-              <h2>Sign In</h2>
-            </Grid>
-            <TextField
-              label="Username"
-              placeholder="Enter username"
-              fullWidth
-              required
-              onChange={(e) => setUsername(e.target.value)}
-              value={username}
-            />
-            <TextField
-              label="Password"
-              placeholder="Enter password"
-              type="password"
-              fullWidth
-              required
-              onChange={(e) => setPassword(e.target.value)}
-              value={password}
-            />
-            <FormControlLabel
-              control={<Checkbox name="checkedB" color="primary" />}
-              label="Remember me"
-            />
-            <Button
-              type="submit"
-              color="primary"
-              variant="contained"
-              style={btnstyle}
-              fullWidth
-              value="LOGIN"
-            >
+    <ThemeProvider theme={theme}>
+      <Grid container component="main" sx={{ height: '100vh' }}>
+        <CssBaseline />
+        <Grid
+          item
+          xs={false}
+          sm={4}
+          md={7}
+          sx={{
+            backgroundImage: 'url(https://source.unsplash.com/random)',
+            backgroundRepeat: 'no-repeat',
+            backgroundColor: (t) =>
+              t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        />
+        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+          <Box
+            sx={{
+              my: 8,
+              mx: 4,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}
+          >
+            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+              <LockOutlinedIcon />
+            </Avatar>
+            <Typography component="h1" variant="h5">
               Sign in
-            </Button>
-            <Typography>
-              <Link href="#">Forgot password ?</Link>
             </Typography>
-            <Typography>
-              {" "}
-              Do you have an account ?<Link href="#">Sign Up</Link>
-            </Typography>
-          </Paper>
-        </Grid>
-        {error && (
-          <Box sx={{ display: "flex", justifyContent: "center" }}>
-            <SnackbarContent message="Wrong Username or Password" action={action} />
+            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="email"
+                label="Email Address"
+                name="email"
+                autoComplete="email"
+                autoFocus
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+              />
+              <FormControlLabel
+                control={<Checkbox value="remember" color="primary" />}
+                label="Remember me"
+              />
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+              >
+                Sign In
+              </Button>
+              <Grid container>
+                <Grid item xs>
+                  <Link href="#" variant="body2">
+                    Forgot password?
+                  </Link>
+                </Grid>
+                <Grid item>
+                  <Link href="#" variant="body2">
+                    {"Don't have an account? Sign Up"}
+                  </Link>
+                </Grid>
+              </Grid>              
+            </Box>
           </Box>
-        )}
-      </form>
-    </>
+        </Grid>
+      </Grid>
+    </ThemeProvider>
   );
 }
 
