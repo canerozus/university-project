@@ -56,39 +56,49 @@ export default function Clubs() {
         </Box>
         <Box
           sx={{
-            px: 30,
-            py: 10,
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "center",
+            overflow: "hidden",
           }}
         >
-          {data.clubs.map((item, index) => {
-            console.log(item);
-            return (
-              <Box
-                key={index}
-                sx={{
-                  width: "300px",
-                  height: "300px",
-                  border: "solid 3px black",
-                  margin: "15px",
-                  padding: "30px",
-                }}
-              >
+          <Box
+            sx={{
+              px: 30,
+              py: 10,
+              overflowY: "scroll",
+              width: "100%",
+              height: "93.4vh",
+              display: "flex",
+              justifyContent: "center",
+              flexWrap: "wrap",
+            }}
+          >
+            {data.clubs.map((item, index) => {
+              console.log(item);
+              return (
                 <Box
+                  key={index}
                   sx={{
-                    backgroundImage: `url(${item.clubImg})`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    opacity: 1,
-                    width: "100%",
-                    height: "100%",
+                    width: "300px",
+                    height: "300px",
+                    border: "solid 3px black",
+                    margin: "15px",
+                    padding: "30px",
                   }}
-                ></Box>
-              </Box>
-            );
-          })}
+                >
+                  <Box
+                    sx={{
+                      backgroundImage: `url(${item.clubImg})`,
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
+                      opacity: 1,
+                      width: "100%",
+                      height: "100%",
+                    }}
+                  ></Box>
+                </Box>
+              );
+            })}            
+            
+          </Box>
         </Box>
       </Box>
     )
