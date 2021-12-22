@@ -10,11 +10,12 @@ export default function Universities() {
         margin: 0,
         backgroundColor: "#f8e4e4",
         width: "100%",
-        height: "100%",
+        height: "99%",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         flexWrap: "wrap",
+        boxShadow:'-2px 0px 7px 3px #aaaaaa;',
         overflow: "scroll",
       }}
     >

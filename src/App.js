@@ -19,7 +19,7 @@ function App() {
             path="/*"
             element={
               <RequireAuth loggedIn={loggedIn}>
-                <Navbar />
+                <Navbar/>
                 <Dashboard />
               </RequireAuth>
             }
