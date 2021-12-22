@@ -37,7 +37,7 @@ function Sidebar() {
             <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', alignContent: 'space-between', flexDirection: 'column', height: '50%', marginBottom: '5%',  }}>
                 <Div>{"Upcoming Activities"}</Div>
 
-                <Box sx={{ backgroundColor: 'white', display: 'flex', alignItems: 'center', overflowX: 'hidden', justifyContent: 'center', flexDirection: 'column',  }}>
+                <Box sx={{ backgroundColor: 'white', display: 'flex', alignItems: 'center',  overflowY:'scroll', justifyContent: 'center', flexDirection: 'column',  }}>
                     {activities.map(item => {
                         return (
                             <Box sx={{ display: 'flex', flexDirection: 'row', WebkitBoxShadow: '4px 4px 10px -5px #888', padding: '5%' }}>
@@ -53,6 +53,7 @@ function Sidebar() {
                             </Box>
                         )
                     })}
+                    
 
 
                     <ArrowCircleDownIcon sx={{ color: '#1976D2' }} fontSize='large' />
