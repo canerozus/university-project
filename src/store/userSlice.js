@@ -6,6 +6,7 @@ const initialState = {
   profilPicture:
     "https://images.pexels.com/photos/1080213/pexels-photo-1080213.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
   loggedIn: window.localStorage.getItem("loggedIn") || false,
+  
 };
 
 const userSlice = createSlice({
@@ -17,6 +18,7 @@ const userSlice = createSlice({
         action.payload.username == state.username &&
         action.payload.password == state.password
       ) {        
+        
         state.loggedIn = true;
         window.localStorage.setItem("loggedIn", true);
       }

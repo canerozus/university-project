@@ -11,7 +11,10 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Routes>
-          <Route path="/login" element={<Login />} />
+          <Route
+            path="/login"
+            element={loggedIn ? <Navigate to="/" /> : <Login />}
+          />
           <Route
             path="/"
             element={
