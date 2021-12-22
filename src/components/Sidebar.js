@@ -41,7 +41,7 @@ function Sidebar() {
                     {activities.map(item => {
                         return (
                             <Box sx={{ display: 'flex', flexDirection: 'row', WebkitBoxShadow: '4px 4px 10px -5px #888', padding: '5%' }}>
-                                <img src={item.clubImg} width='20%' />
+                                <img alt='activity' src={item.clubImg} width='20%' />
                                 <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', width: '100%' }}>
                                     <h4 style={{ margin: 0 }}>{item.title}</h4>
                                     <p style={{ margin: 0, textAlign: 'center', width: '100%' }}>{item.day}</p>
@@ -68,7 +68,7 @@ function Sidebar() {
                         return (
                             <Box sx={{ display: 'flex', flexDirection: 'column', WebkitBoxShadow: '4px 4px 10px -5px #888', marginRight: '5%', marginBottom: '5%', padding: '5%', }}>
                                 <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-                                    <img src={item.clubImg} width='20%' />
+                                    <img alt='announcement' src={item.clubImg} width='20%' />
                                     <h4 style={{ margin: 0 }}>{item.title}</h4>
                                 </Box>
                                 <p style={{ overFlowX: 'hidden', overflowY: 'scroll', height: '70px', margin: '0' }}>{item.announcment}</p>
