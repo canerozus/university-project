@@ -35,6 +35,7 @@ const initialState = {
             },
           ],
           acceptOthers: true,
+          keyWords:['Research']
         },
         {
           clubImg:
@@ -64,6 +65,7 @@ const initialState = {
             },
           ],
           acceptOthers: true,
+          keyWords:['Sport']
         },
         {
           clubImg:
@@ -93,6 +95,7 @@ const initialState = {
             },
           ],
           acceptOthers: true,
+          keyWords:['Technology']
         },
       ],
     },
@@ -129,6 +132,7 @@ const initialState = {
             },
           ],
           acceptOthers: true,
+          keyWords:['Research']
         },
         {
           clubImg:
@@ -158,6 +162,7 @@ const initialState = {
             },
           ],
           acceptOthers: false,
+          keyWords:['Language']
         },
         {
           clubImg:
@@ -187,6 +192,7 @@ const initialState = {
             },
           ],
           acceptOthers: false,
+          keyWords:['Sport']
         },
       ],
     },
@@ -196,9 +202,32 @@ const initialState = {
 const universitiesSlice = createSlice({
   name: "activities",
   initialState,
-  reducers: {},
+  reducers: {
+    addClub: (state, action) => {
+      
+      state.data[action.payload.universityIndex].clubs.push({
+        clubImg:
+          "https://itukuluplerbirligi.com/wp-content/uploads/2019/11/itubees-logo1.png",
+        clubName: action.payload.name,
+        type: action.payload.type,
+        school: state.data[action.payload.universityIndex].name,
+        about: action.payload.information,
+        contact: {
+          contactImg:
+            "https://images.unsplash.com/photo-1532074205216-d0e1f4b87368?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTl8fHByb2ZpbGV8ZW58MHx8MHx8&w=1000&q=80",
+          contactName: "Lorem Ipsum",
+          contactDesc:
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+        },
+        announcements: [],
+        acceptOthers: action.payload.acceptOthers,
+        keyWords: action.payload.keyWords
+      });
+    },
+  },
 });
 
 // Action creators are generated for each case reducer function
 
 export default universitiesSlice.reducer;
+export const {addClub} = universitiesSlice.actions;

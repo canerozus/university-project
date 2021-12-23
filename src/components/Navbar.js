@@ -107,8 +107,7 @@ export default function PrimarySearchAppBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>      
       <MenuItem
         onClick={() => {
           dispatch(logout());
@@ -173,7 +172,7 @@ export default function PrimarySearchAppBar() {
   );
 
   return (
-    <Box sx={{ flexGrow: 1, height: "6.6vh",marginBottom:'3px' }}>
+    <Box sx={{ flexGrow: 1,marginBottom:'3px' }}>
       <AppBar position="static" >
         <Toolbar>
           <IconButton

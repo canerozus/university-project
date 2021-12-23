@@ -2,8 +2,6 @@ import { Modal, Typography } from "@material-ui/core";
 import { Image } from "@material-ui/icons";
 import { Avatar, Box, Stack } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-
 import HomeIcon from "@mui/icons-material/Home";
 import EventIcon from "@mui/icons-material/Event";
 import PeopleIcon from "@mui/icons-material/People";

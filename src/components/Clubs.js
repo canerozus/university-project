@@ -13,22 +13,23 @@ import CloseIcon from "@mui/icons-material/Close";
 import ClubModal from "./ClubModal";
 import AddIcon from "@mui/icons-material/Add";
 import { useSelector } from "react-redux";
+import CreateClubModal from "./CreateClubModal";
 
 export default function Clubs() {
-  const universitiesData = useSelector(state => state.universities.data);
+  const universitiesData = useSelector((state) => state.universities.data);
   const location = useLocation().pathname.split("/")[1];
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState(null);
   const [modalData, setModalData] = useState(null);
   const [openClubModal, setOpenClubModal] = useState(false);
+  const [openCreateClub, setOpenCreateClub] = useState(false);
 
   useEffect(() => {
     setData(universitiesData[location]);
 
     setLoading(false);
-  }, [universitiesData, location]);  
+  }, [universitiesData, location]);
 
- 
   return (
     !isLoading && (
       <Box
@@ -106,7 +107,12 @@ export default function Clubs() {
             })}
           </Box>
         </Box>
-        <ClubModal modalData={modalData} open={openClubModal} setOpen={setOpenClubModal} />
+        <ClubModal
+          modalData={modalData}
+          open={openClubModal}
+          setOpen={setOpenClubModal}
+        />
+        <CreateClubModal open={openCreateClub} setOpen={setOpenCreateClub} location={location}/>
         <Stack
           direction="row"
           spacing={1.5}
@@ -117,14 +123,17 @@ export default function Clubs() {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            cursor:'pointer'
+            cursor: "pointer",
+          }}
+          onClick={() => {
+            setOpenCreateClub(true);
           }}
         >
           <Box
             sx={{
               width: "50px",
               height: "50px",
-              backgroundColor: "blue",
+              backgroundColor: "#2074d4",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -134,7 +143,9 @@ export default function Clubs() {
             <AddIcon sx={{ color: "white", fontSize: "36px" }} />
           </Box>
           <Typography variant="h5">
-            <span style={{ color: "blue", fontWeight:'bold' }}>Create a Club</span>
+            <span style={{ color: "#2074d4", fontWeight: "bold" }}>
+              Create a Club
+            </span>
           </Typography>
         </Stack>
       </Box>
