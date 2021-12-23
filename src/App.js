@@ -33,7 +33,7 @@ function App() {
 export default App;
 
 function RequireAuth({ children, loggedIn }) {
-  console.log(loggedIn);
+  
 
   if (!loggedIn) {
     // Redirect them to the /login page, but save the current location they were

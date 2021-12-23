@@ -1,9 +1,14 @@
 import { Box, Container } from "@mui/material";
-import React from "react";
-import universityData from "../data";
+import React, { useEffect } from "react";
+
 import { Link, Outlet } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function Universities() {
+  const { data } = useSelector((state) => state.universities);
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
   return (
     <Box
       sx={{
@@ -15,13 +20,11 @@ export default function Universities() {
         alignItems: "center",
         justifyContent: "center",
         flexWrap: "wrap",
-        boxShadow:'-2px 0px 7px 3px #aaaaaa;',
+        boxShadow: "-2px 0px 7px 3px #aaaaaa;",
         overflowY: "scroll",
       }}
     >
-      {universityData.map((item, index) => {
-        {
-        }
+      {data?.map((item, index) => {
         return (
           <Link
             key={index}

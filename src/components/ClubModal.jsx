@@ -3,7 +3,7 @@ import { Image } from "@material-ui/icons";
 import { Avatar, Box, Stack } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import universityData from "../data";
+
 import HomeIcon from "@mui/icons-material/Home";
 import EventIcon from "@mui/icons-material/Event";
 import PeopleIcon from "@mui/icons-material/People";
@@ -183,17 +183,17 @@ export default function ClubModal({ modalData, open, setOpen }) {
                   </span>
                 </Typography>
               </Box>
-              {modalData?.announcements.map((item) => {
+              {modalData?.announcements.map((item,index) => {
                 return (
-                  <Stack spacing={2} direction='row'>
+                  <Stack spacing={2} direction='row' key={index}>
                     <Avatar src={modalData?.contact.contactImg} />
                     <Typography variant="body1">{item.announcmentDesc}</Typography>
                   </Stack>
                 );
               })}
-              {modalData?.announcements.map((item) => {
+              {modalData?.announcements.map((item, index) => {
                 return (
-                  <Stack spacing={2} direction='row'>
+                  <Stack spacing={2} direction='row'  key={index}>
                     <Avatar src={modalData?.contact.contactImg} />
                     <Typography variant="body1">{item.announcmentDesc}</Typography>
                   </Stack>
