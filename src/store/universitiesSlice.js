@@ -15,6 +15,7 @@ const initialState = {
           clubName: "MT Bilkent",
           type: "Club",
           school: "Bilkent University",
+          schoolId: 0,
           about:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
           contact: {
@@ -46,6 +47,7 @@ const initialState = {
           clubName: "Outdoor Sports",
           type: "Club",
           school: "Bilkent University",
+          schoolId: 0,
           about:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
           contact: {
@@ -77,6 +79,7 @@ const initialState = {
           clubName: "Google Developer Student Clubs",
           type: "Club",
           school: "Bilkent University",
+          schoolId: 0,
           about:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
           contact: {
@@ -115,6 +118,7 @@ const initialState = {
           clubName: "MT ITU",
           type: "Club",
           school: "Istanbul Technical University",
+          schoolId: 1,
           about:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
           contact: {
@@ -146,6 +150,7 @@ const initialState = {
           clubName: "English Speaking Club",
           type: "Club",
           school: "Istanbul Technical University",
+          schoolId: 1,
           about:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
           contact: {
@@ -177,6 +182,7 @@ const initialState = {
           clubName: "ITU Bees",
           type: "Club",
           school: "Istanbul Technical University",
+          schoolId: 1,
           about:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
           contact: {
@@ -200,7 +206,7 @@ const initialState = {
           ],
           acceptOthers: false,
           keyWords: ["sport"],
-          members:[]
+          members: [],
         },
       ],
     },
@@ -220,6 +226,7 @@ const universitiesSlice = createSlice({
         clubName: action.payload.name,
         type: action.payload.type,
         school: state.data[action.payload.universityIndex].name,
+        schoolId: action.payload.universityIndex,
         about: action.payload.information,
         contact: {
           contactImg:
@@ -243,7 +250,6 @@ const universitiesSlice = createSlice({
         });
       });
     },
-    
   },
 });
 

@@ -79,19 +79,19 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function PrimarySearchAppBar({setOpenModal}) {
+export default function PrimarySearchAppBar({ setOpenModal }) {
   const { profilPicture } = useSelector((state) => state.user);
   const { searchResults } = useSelector((state) => state.universities);
+  
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
 
   const handleSearchChange = (e) => {
+    
     dispatch(findClubs(e.target.value.trim().toLowerCase()));
   };
-
-
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -114,7 +114,7 @@ export default function PrimarySearchAppBar({setOpenModal}) {
   };
 
   const menuId = "primary-search-account-menu";
-  const renderMenu  = (
+  const renderMenu = (
     <Menu
       anchorEl={anchorEl}
       anchorOrigin={{
@@ -203,6 +203,7 @@ export default function PrimarySearchAppBar({setOpenModal}) {
             aria-label="show 4 new mails"
             color="inherit"
             onClick={() => {
+              
               navigate("/");
             }}
           >
@@ -234,8 +235,9 @@ export default function PrimarySearchAppBar({setOpenModal}) {
                         <>
                           <MenuItem
                             onClick={() => {
+                                                            
                               dispatch(setClub(item));
-                              dispatch(setOpenModal(true));
+                              navigate(`/${item.schoolId}/${item.clubId}`);
                             }}
                           >
                             <Avatar src={item.clubImg} />
@@ -249,7 +251,7 @@ export default function PrimarySearchAppBar({setOpenModal}) {
                           <MenuItem
                             onClick={() => {
                               dispatch(setClub(item));
-                              dispatch(setOpenModal(true));
+                              navigate(`/0/${item.clubId}`);
                             }}
                           >
                             <Avatar src={item.clubImg} />
@@ -266,10 +268,14 @@ export default function PrimarySearchAppBar({setOpenModal}) {
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <IconButton size="large" color="inherit" onClick={() => {
-              setOpenModal(true)
-            }}>
-              <EventIcon size="large" /*Calendar Modal*//>
+            <IconButton
+              size="large"
+              color="inherit"
+              onClick={() => {
+                setOpenModal(true);
+              }}
+            >
+              <EventIcon size="large" /*Calendar Modal*/ />
             </IconButton>
             <IconButton
               size="large"
