@@ -5,9 +5,10 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Clubs from "../components/Clubs";
 import { Box } from "@mui/system";
 import CalendarModal from '../components/CalendarModal';
+import ClubModal from "../components/ClubModal";
 
 export default function Dashboard({openModal, setOpenModal}) {
-import ClubModal from "../components/ClubModal";
+
 
   return (
     <div

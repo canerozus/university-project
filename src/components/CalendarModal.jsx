@@ -46,8 +46,8 @@ export default function BasicModal({ open, close }) {
                         height: "900px",
                         p: 6,
                     }}
-                >
-                    {show && <Event show={show} handleClose={() => {setShow(false)}}/>}
+                > 
+                    <Event show={show} setShow={setShow}/>
                     <FullCalendar
                         sx={{ height: '500px', width: '500px' }}
                         plugins={[dayGridPlugin, interactionPlugin]}
