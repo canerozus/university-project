@@ -31,7 +31,7 @@ export default function CreateClubModal({ open, setOpen, location }) {
   const [name, setName] = useState("");
   const [type, setType] = useState("Club");
   const [acceptOthers, setAcceptOthers] = useState(false);
-  const [information, setInformation] = useState("Information");
+  const [information, setInformation] = useState("");
 
   const onTagsChange = (event, values) => {
     const newValues = values.map((item) => item.toLowerCase());
@@ -46,7 +46,7 @@ export default function CreateClubModal({ open, setOpen, location }) {
           universityIndex: location,
           name,
           type: type,
-          about: information,
+          information,
           acceptOthers,
           keyWords,
         })
