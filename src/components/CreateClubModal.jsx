@@ -34,7 +34,8 @@ export default function CreateClubModal({ open, setOpen, location }) {
   const [information, setInformation] = useState("Information");
 
   const onTagsChange = (event, values) => {
-    setKeyWords(values);
+    const newValues = values.map((item) => item.toLowerCase());
+    setKeyWords(newValues);
   };
 
   const handleSubmit = () => {
@@ -52,6 +53,7 @@ export default function CreateClubModal({ open, setOpen, location }) {
       );
       setName("");
       setInformation("");
+      setKeyWords([]);
     }
   };
 

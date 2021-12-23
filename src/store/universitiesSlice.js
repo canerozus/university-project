@@ -35,7 +35,7 @@ const initialState = {
             },
           ],
           acceptOthers: true,
-          keyWords:['Research']
+          keyWords: ["research"],
         },
         {
           clubImg:
@@ -65,7 +65,7 @@ const initialState = {
             },
           ],
           acceptOthers: true,
-          keyWords:['Sport']
+          keyWords: ["sport"],
         },
         {
           clubImg:
@@ -95,7 +95,7 @@ const initialState = {
             },
           ],
           acceptOthers: true,
-          keyWords:['Technology']
+          keyWords: ["technology"],
         },
       ],
     },
@@ -132,7 +132,7 @@ const initialState = {
             },
           ],
           acceptOthers: true,
-          keyWords:['Research']
+          keyWords: ["research"],
         },
         {
           clubImg:
@@ -162,7 +162,7 @@ const initialState = {
             },
           ],
           acceptOthers: false,
-          keyWords:['Language']
+          keyWords: ["language"],
         },
         {
           clubImg:
@@ -192,11 +192,12 @@ const initialState = {
             },
           ],
           acceptOthers: false,
-          keyWords:['Sport']
+          keyWords: ["sport"],
         },
       ],
     },
   ],
+  searchResults: [],
 };
 
 const universitiesSlice = createSlice({
@@ -204,7 +205,6 @@ const universitiesSlice = createSlice({
   initialState,
   reducers: {
     addClub: (state, action) => {
-      
       state.data[action.payload.universityIndex].clubs.push({
         clubImg:
           "https://itukuluplerbirligi.com/wp-content/uploads/2019/11/itubees-logo1.png",
@@ -221,7 +221,17 @@ const universitiesSlice = createSlice({
         },
         announcements: [],
         acceptOthers: action.payload.acceptOthers,
-        keyWords: action.payload.keyWords
+        keyWords: action.payload.keyWords,
+      });
+    },
+    findClubs: (state, action) => {
+      state.searchResults = [];
+      state.data.forEach((item) => {
+        item.clubs.forEach((item2) => {
+          if (item2.keyWords.includes(action.payload)) {
+            state.searchResults.push(item2);
+          }
+        });
       });
     },
   },
@@ -230,4 +240,4 @@ const universitiesSlice = createSlice({
 // Action creators are generated for each case reducer function
 
 export default universitiesSlice.reducer;
-export const {addClub} = universitiesSlice.actions;
+export const { addClub, findClubs } = universitiesSlice.actions;

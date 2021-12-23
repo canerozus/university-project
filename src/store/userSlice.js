@@ -4,7 +4,7 @@ const initialState = {
   username: "admin",
   password: "123456",
   profilPicture:
-    "https://images.pexels.com/photos/1080213/pexels-photo-1080213.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+    "https://img.freepik.com/free-photo/pleasant-looking-serious-man-stands-profile-has-confident-expression-wears-casual-white-t-shirt_273609-16959.jpg?size=626&ext=jpg",
   loggedIn: window.localStorage.getItem("loggedIn") || false,
 };
 

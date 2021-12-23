@@ -8,12 +8,16 @@ import PeopleIcon from "@mui/icons-material/People";
 import SettingsIcon from "@mui/icons-material/Settings";
 import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
 import CloseIcon from "@mui/icons-material/Close";
+import { useDispatch, useSelector } from "react-redux";
+import { setOpenModal } from "../store/clubSlice";
 export default function ClubModal({ modalData, open, setOpen }) {
+  const { openModal } = useSelector((state) => state.club);
+  const dispatch = useDispatch();
   return (
     <Modal
-      open={open}
+      open={openModal}
       onClose={() => {
-        setOpen(false);
+        dispatch(setOpenModal(false));
       }}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
@@ -41,7 +45,7 @@ export default function ClubModal({ modalData, open, setOpen }) {
             cursor: "pointer",
           }}
           onClick={() => {
-            setOpen(false);
+            dispatch(setOpenModal(false));
           }}
         />
         <Box sx={{ display: "flex", justifyContent: "space-between" }}>
@@ -121,7 +125,7 @@ export default function ClubModal({ modalData, open, setOpen }) {
                 <Avatar
                   alt="contact"
                   src={modalData?.contact.contactImg}
-                  sx={{width:48, height:48}}
+                  sx={{ width: 48, height: 48 }}
                 />
                 <Typography variant="body1">
                   <span style={{ color: "black" }}>
@@ -172,7 +176,6 @@ export default function ClubModal({ modalData, open, setOpen }) {
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
-                  
                 }}
               >
                 <Typography variant="h5">
@@ -181,19 +184,23 @@ export default function ClubModal({ modalData, open, setOpen }) {
                   </span>
                 </Typography>
               </Box>
-              {modalData?.announcements.map((item,index) => {
+              {modalData?.announcements.map((item, index) => {
                 return (
-                  <Stack spacing={2} direction='row' key={index}>
+                  <Stack spacing={2} direction="row" key={index}>
                     <Avatar src={modalData?.contact.contactImg} />
-                    <Typography variant="body1">{item.announcmentDesc}</Typography>
+                    <Typography variant="body1">
+                      {item.announcmentDesc}
+                    </Typography>
                   </Stack>
                 );
               })}
               {modalData?.announcements.map((item, index) => {
                 return (
-                  <Stack spacing={2} direction='row'  key={index}>
+                  <Stack spacing={2} direction="row" key={index}>
                     <Avatar src={modalData?.contact.contactImg} />
-                    <Typography variant="body1">{item.announcmentDesc}</Typography>
+                    <Typography variant="body1">
+                      {item.announcmentDesc}
+                    </Typography>
                   </Stack>
                 );
               })}

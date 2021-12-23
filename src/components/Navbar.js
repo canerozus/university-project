@@ -1,4 +1,3 @@
-import * as React from "react";
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -16,12 +15,29 @@ import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import HomeIcon from "@mui/icons-material/Home";
-import { Avatar, Button } from "@mui/material";
+import {
+  Avatar,
+  Button,
+  Divider,
+  ListItemIcon,
+  ListItemText,
+  MenuList,
+  Paper,
+} from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import EventIcon from "@mui/icons-material/Event";
 import PeopleIcon from "@mui/icons-material/People";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../store/userSlice";
+import {
+  Cloud,
+  ContentCopy,
+  ContentCut,
+  ContentPaste,
+} from "@mui/icons-material";
+import { findClubs } from "../store/universitiesSlice";
+import { useEffect, useState } from "react";
+import { setClub, setOpenModal } from "../store/clubSlice";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -65,10 +81,19 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function PrimarySearchAppBar() {
   const { profilPicture } = useSelector((state) => state.user);
+  const { searchResults } = useSelector((state) => state.universities);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
+
+  const handleSearchChange = (e) => {
+    dispatch(findClubs(e.target.value.trim().toLowerCase()));
+  };
+
+  useEffect(() => {
+    console.log(searchResults);
+  }, [searchResults]);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -107,7 +132,7 @@ export default function PrimarySearchAppBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>      
+      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem
         onClick={() => {
           dispatch(logout());
@@ -172,8 +197,8 @@ export default function PrimarySearchAppBar() {
   );
 
   return (
-    <Box sx={{ flexGrow: 1,marginBottom:'3px' }}>
-      <AppBar position="static" >
+    <Box sx={{ flexGrow: 1, marginBottom: "3px" }}>
+      <AppBar position="static">
         <Toolbar>
           <IconButton
             size="large"
@@ -193,7 +218,53 @@ export default function PrimarySearchAppBar() {
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ "aria-label": "search" }}
+              onChange={handleSearchChange}
             />
+            {searchResults.length > 0 && (
+              <Paper
+                sx={{
+                  width: 320,
+                  maxWidth: "100%",
+                  position: "absolute",
+                  zIndex: "1000",
+                }}
+              >
+                <MenuList>
+                  {searchResults.map((item, key) => {
+                    if (key == searchResults.length - 1) {
+                      return (
+                        <>
+                          <MenuItem
+                            onClick={() => {
+                              dispatch(setClub(item));
+                              dispatch(setOpenModal(true));
+                            }}
+                          >
+                            <Avatar src={item.clubImg} />
+                            <ListItemText>{item.clubName}</ListItemText>
+                          </MenuItem>
+                        </>
+                      );
+                    } else {
+                      return (
+                        <>
+                          <MenuItem
+                            onClick={() => {
+                              dispatch(setClub(item));
+                              dispatch(setOpenModal(true));
+                            }}
+                          >
+                            <Avatar src={item.clubImg} />
+                            <ListItemText>{item.clubName}</ListItemText>
+                          </MenuItem>
+                          <Divider />
+                        </>
+                      );
+                    }
+                  })}
+                </MenuList>
+              </Paper>
+            )}
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>

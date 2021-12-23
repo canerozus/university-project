@@ -12,17 +12,20 @@ import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
 import CloseIcon from "@mui/icons-material/Close";
 import ClubModal from "./ClubModal";
 import AddIcon from "@mui/icons-material/Add";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CreateClubModal from "./CreateClubModal";
+import { setClub, setOpenModal } from "../store/clubSlice";
 
 export default function Clubs() {
   const universitiesData = useSelector((state) => state.universities.data);
   const location = useLocation().pathname.split("/")[1];
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState(null);
-  const [modalData, setModalData] = useState(null);
   const [openClubModal, setOpenClubModal] = useState(false);
   const [openCreateClub, setOpenCreateClub] = useState(false);
+  const dispatch = useDispatch();
+  const modalData = useSelector((state) => state.club.data);
+  const { openModal } = useSelector((state) => state.club);
 
   useEffect(() => {
     setData(universitiesData[location]);
@@ -88,8 +91,9 @@ export default function Clubs() {
                     cursor: "pointer",
                   }}
                   onClick={() => {
-                    setModalData(item);
-                    setOpenClubModal(true);
+                    dispatch(setClub(item));
+                    dispatch(setOpenModal(true));
+                    console.log(openModal);
                   }}
                 >
                   <Box
@@ -107,12 +111,12 @@ export default function Clubs() {
             })}
           </Box>
         </Box>
-        <ClubModal
-          modalData={modalData}
-          open={openClubModal}
-          setOpen={setOpenClubModal}
+        <ClubModal modalData={modalData} />
+        <CreateClubModal
+          open={openCreateClub}
+          setOpen={setOpenCreateClub}
+          location={location}
         />
-        <CreateClubModal open={openCreateClub} setOpen={setOpenCreateClub} location={location}/>
         <Stack
           direction="row"
           spacing={1.5}
