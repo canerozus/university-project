@@ -3,7 +3,7 @@ import { Image } from "@material-ui/icons";
 import { Avatar, Box, Stack } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import universityData from "../data";
+
 import HomeIcon from "@mui/icons-material/Home";
 import EventIcon from "@mui/icons-material/Event";
 import PeopleIcon from "@mui/icons-material/People";
@@ -12,27 +12,23 @@ import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
 import CloseIcon from "@mui/icons-material/Close";
 import ClubModal from "./ClubModal";
 import AddIcon from "@mui/icons-material/Add";
+import { useSelector } from "react-redux";
 
 export default function Clubs() {
+  const universitiesData = useSelector(state => state.universities.data);
   const location = useLocation().pathname.split("/")[1];
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState(null);
   const [modalData, setModalData] = useState(null);
-  const [open, setOpen] = useState(false);
+  const [openClubModal, setOpenClubModal] = useState(false);
 
   useEffect(() => {
-    setData(universityData[location]);
+    setData(universitiesData[location]);
 
     setLoading(false);
-  }, [location]);
+  }, [universitiesData, location]);  
 
-  useEffect(() => {
-    console.log(open);
-  }, [open]);
-
-  useEffect(() => {
-    console.log(location);
-  }, [location]);
+ 
   return (
     !isLoading && (
       <Box
@@ -92,7 +88,7 @@ export default function Clubs() {
                   }}
                   onClick={() => {
                     setModalData(item);
-                    setOpen(true);
+                    setOpenClubModal(true);
                   }}
                 >
                   <Box
@@ -110,7 +106,7 @@ export default function Clubs() {
             })}
           </Box>
         </Box>
-        <ClubModal modalData={modalData} open={open} setOpen={setOpen} />
+        <ClubModal modalData={modalData} open={openClubModal} setOpen={setOpenClubModal} />
         <Stack
           direction="row"
           spacing={1.5}
