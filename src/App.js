@@ -4,8 +4,11 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import Dashboard from "./Pages/Dashboard";
 import { useSelector } from "react-redux";
+import { useState } from "react";
 
 function App() {
+  const [openCalendarModal, setopenCalendarModal] = useState(false);
+
   const { loggedIn } = useSelector((state) => state.user);
   return (
     <BrowserRouter>
@@ -19,8 +22,8 @@ function App() {
             path="/*"
             element={
               <RequireAuth loggedIn={loggedIn}>
-                <Navbar />
-                <Dashboard />
+                <Navbar setOpenModal={setopenCalendarModal}/>
+                <Dashboard openModal={openCalendarModal} setOpenModal={setopenCalendarModal}/>
               </RequireAuth>
             }
           />
@@ -33,7 +36,7 @@ function App() {
 export default App;
 
 function RequireAuth({ children, loggedIn }) {
-  
+
 
   if (!loggedIn) {
     // Redirect them to the /login page, but save the current location they were

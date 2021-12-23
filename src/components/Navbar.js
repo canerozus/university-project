@@ -63,7 +63,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function PrimarySearchAppBar() {
+export default function PrimarySearchAppBar({setOpenModal}) {
   const { profilPicture } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -91,7 +91,7 @@ export default function PrimarySearchAppBar() {
   };
 
   const menuId = "primary-search-account-menu";
-  const renderMenu = (
+  const renderMenu  = (
     <Menu
       anchorEl={anchorEl}
       anchorOrigin={{
@@ -173,7 +173,7 @@ export default function PrimarySearchAppBar() {
   );
 
   return (
-    <Box sx={{ flexGrow: 1, height: "6.6vh",marginBottom:'3px' }}>
+    <Box sx={{ flexGrow: 1, height: "6.6vh", marginBottom: '3px' }}>
       <AppBar position="static" >
         <Toolbar>
           <IconButton
@@ -198,8 +198,10 @@ export default function PrimarySearchAppBar() {
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <IconButton size="large" color="inherit">
-              <EventIcon size="large" />
+            <IconButton size="large" color="inherit" onClick={() => {
+              setOpenModal(true)
+            }}>
+              <EventIcon size="large" /*Calendar Modal*//>
             </IconButton>
             <IconButton
               size="large"
