@@ -2,21 +2,50 @@ import { Modal, Typography } from "@material-ui/core";
 import { Image } from "@material-ui/icons";
 import { Avatar, Box, Stack } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-
 import HomeIcon from "@mui/icons-material/Home";
 import EventIcon from "@mui/icons-material/Event";
 import PeopleIcon from "@mui/icons-material/People";
 import SettingsIcon from "@mui/icons-material/Settings";
 import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
 import CloseIcon from "@mui/icons-material/Close";
-export default function ClubModal({ modalData, open, setOpen }) {
+import { useDispatch, useSelector } from "react-redux";
+import { setClub, setOpenModal } from "../store/clubSlice";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import ClubModalHome from "./ClubModalHome";
+import ClubModalPeople from "./ClubModalPeople";
+export default function ClubModal() {
+  const navigate = useNavigate();
+  const clubLocation = useLocation().pathname.split("/")[2];
+  const universityLocation = useLocation().pathname.split("/")[1];
+  const { isLoading, data } = useSelector((state) => state.club);
+
+  const UniversityData = useSelector((state) => state.universities.data);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(
+      setClub(
+        UniversityData[universityLocation].clubs.find(
+          (item) => item.clubId == clubLocation
+        )
+      )
+    );
+  }, [clubLocation, universityLocation, UniversityData, dispatch]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(setClub(null));
+    };
+  }, [data, dispatch]);
+
+  const handleClose = () => {
+    navigate(`../${universityLocation}`);
+  };
+
   return (
     <Modal
-      open={open}
-      onClose={() => {
-        setOpen(false);
-      }}
+      open={data != null}
+      onClose={handleClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
@@ -43,165 +72,122 @@ export default function ClubModal({ modalData, open, setOpen }) {
             cursor: "pointer",
           }}
           onClick={() => {
-            setOpen(false);
+            navigate(`../${universityLocation}`);
           }}
         />
-        <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-          <img
-            alt="club"
-            src={modalData?.clubImg}
-            style={{ width: "200px", height: "200px" }}
-          />
 
-          <Stack spacing={2} justifyContent="center">
-            <Typography variant="h4">
-              <span style={{ color: "purple" }}>{modalData?.clubName}</span>
-            </Typography>
-            <Typography variant="h5" sx={{ display: "flex" }}>
-              <span style={{ color: "purple", fontWeight: "bold" }}>Type:</span>{" "}
-              {modalData?.type}
-            </Typography>
-            <Typography variant="h5">
-              <span style={{ color: "purple", fontWeight: "bold" }}>
-                School:
-              </span>{" "}
-              {modalData?.school}
-            </Typography>
-          </Stack>
-          <Stack
-            spacing={3}
-            direction="row"
-            justifyContent="center"
-            sx={{ px: 5 }}
-          >
-            <Stack spacing={1} alignItems="center" sx={{ cursor: "pointer" }}>
-              <HomeIcon fontSize="large" />
-              <Typography variant="body1">Home</Typography>
-            </Stack>
-            <Stack spacing={1} alignItems="center" sx={{ cursor: "pointer" }}>
-              <EventIcon fontSize="large" />
-              <Typography variant="body1">Calendar</Typography>
-            </Stack>
-            <Stack spacing={1} alignItems="center" sx={{ cursor: "pointer" }}>
-              <PeopleIcon fontSize="large" />
-              <Typography variant="body1">People</Typography>
-            </Stack>
-            <Stack spacing={1} alignItems="center" sx={{ cursor: "pointer" }}>
-              <SettingsIcon fontSize="large" />
-              <Typography variant="body1">Settings</Typography>
-            </Stack>
-            <Stack spacing={1} alignItems="center" sx={{ cursor: "pointer" }}>
-              <ChatBubbleIcon fontSize="large" />
-              <Typography variant="body1">Chat</Typography>
-            </Stack>
-          </Stack>
-        </Box>
-        <Box sx={{ mt: 15, display: "flex", justifyContent: "space-between" }}>
-          <Box>
-            <Box
-              sx={{
-                border: "solid 3px purple",
-                width: "350px",
-                height: "180px",
-                py: 1,
-                px: 2,
-                overflowY: "scroll",
-                backgroundColor: "#b0b4e4",
-                mb: 5,
-              }}
-            >
-              <Typography variant="h5">
-                <span style={{ color: "red" }}>About:</span>{" "}
-              </Typography>
-              <Typography variant="body1">{modalData?.about} </Typography>
-            </Box>
-            <Box>
-              <Stack spacing={2} direction="row" alignItems="center">
-                <Typography variant="h5">
-                  <span style={{ color: "red" }}>Contact:</span>{" "}
-                </Typography>
-                <Avatar
-                  alt="contact"
-                  src={modalData?.contact.contactImg}
-                  sx={{width:48, height:48}}
-                />
-                <Typography variant="body1">
-                  <span style={{ color: "black" }}>
-                    {modalData?.contact.contactName}
-                  </span>{" "}
-                </Typography>
-                <Box
-                  backgroundColor="purple"
-                  sx={{
-                    cursor: "pointer",
-                    width: "50px",
-                    height: "50px",
-                    borderRadius: "50%",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <ChatBubbleIcon sx={{ color: "white" }} />
-                </Box>
-              </Stack>
-              <Box sx={{ mt: 7 }}>
-                <Typography variant="h6">
-                  <span style={{ color: "red" }}>
-                    {modalData?.acceptOthers
-                      ? "*This club accepts from other schools."
-                      : "*This club does not accept from other schools."}
-                  </span>
-                </Typography>
-              </Box>
-            </Box>
-          </Box>
+{isLoading ? (
           <Box
             sx={{
-              border: "solid 3px purple",
-              width: "550px",
-              height: "380px",
-              py: 2,
-              px: 3,
-              overflowY: "scroll",
-              backgroundColor: "#b0b4e4",
+              width: "100%",
+              height: "100%",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
             }}
           >
-            <Stack spacing={4}>
-              <Box
-                sx={{
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  
-                }}
-              >
-                <Typography variant="h5">
-                  <span style={{ color: "red", fontWeight: "bold" }}>
-                    Announcements
-                  </span>
-                </Typography>
-              </Box>
-              {modalData?.announcements.map((item,index) => {
-                return (
-                  <Stack spacing={2} direction='row' key={index}>
-                    <Avatar src={modalData?.contact.contactImg} />
-                    <Typography variant="body1">{item.announcmentDesc}</Typography>
-                  </Stack>
-                );
-              })}
-              {modalData?.announcements.map((item, index) => {
-                return (
-                  <Stack spacing={2} direction='row'  key={index}>
-                    <Avatar src={modalData?.contact.contactImg} />
-                    <Typography variant="body1">{item.announcmentDesc}</Typography>
-                  </Stack>
-                );
-              })}
-            </Stack>
+            <h1>Loading...</h1>
           </Box>
-        </Box>
+        ) : (
+          <>
+            <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+              <img
+                alt="club"
+                src={data?.clubImg}
+                style={{ width: "200px", height: "200px" }}
+              />
+
+              <Stack spacing={2} justifyContent="center">
+                <Typography variant="h4">
+                  <span style={{ color: "#2074d4" }}>{data?.clubName}</span>
+                </Typography>
+                <Typography variant="h5" sx={{ display: "flex" }}>
+                  <span style={{ color: "#2074d4", fontWeight: "bold" }}>
+                    Type:
+                  </span>{" "}
+                  {data?.type}
+                </Typography>
+                <Typography variant="h5">
+                  <span style={{ color: "#2074d4", fontWeight: "bold" }}>
+                    School:
+                  </span>{" "}
+                  {data?.school}
+                </Typography>
+              </Stack>
+              <Stack
+                spacing={3}
+                direction="row"
+                justifyContent="center"
+                sx={{ px: 5 }}
+              >
+                <Stack
+                  spacing={1}
+                  alignItems="center"
+                  sx={{ cursor: "pointer" }}
+                >
+                  <HomeIcon
+                    fontSize="large"
+                    onClick={() => {
+                      navigate(`/${universityLocation}/${clubLocation}`);
+                    }}
+                    style={{ color: "#2074d4" }}
+                  />
+                  <Typography variant="body1">Home</Typography>
+                </Stack>
+                <Stack
+                  spacing={1}
+                  alignItems="center"
+                  sx={{ cursor: "pointer" }}
+                >
+                  <EventIcon fontSize="large" style={{ color: "#2074d4" }} />
+                  <Typography variant="body1">Calendar</Typography>
+                </Stack>
+                <Stack
+                  spacing={1}
+                  alignItems="center"
+                  sx={{ cursor: "pointer" }}
+                >
+                  <PeopleIcon
+                    fontSize="large"
+                    onClick={() => {
+                      navigate(
+                        `/${universityLocation}/${clubLocation}/members`
+                      );
+                    }}
+                    style={{ color: "#2074d4" }}
+                  />
+                  <Typography variant="body1">People</Typography>
+                </Stack>
+                <Stack
+                  spacing={1}
+                  alignItems="center"
+                  sx={{ cursor: "pointer" }}
+                >
+                  <SettingsIcon fontSize="large" style={{ color: "#2074d4" }} />
+                  <Typography variant="body1">Settings</Typography>
+                </Stack>
+                <Stack
+                  spacing={1}
+                  alignItems="center"
+                  sx={{ cursor: "pointer" }}
+                >
+                  <ChatBubbleIcon
+                    fontSize="large"
+                    style={{ color: "#2074d4" }}
+                  />
+                  <Typography variant="body1">Chat</Typography>
+                </Stack>
+              </Stack>
+            </Box>
+            <Routes>
+            <Route path={`/`} element={<ClubModalHome data={data} />} />
+              <Route
+                path={`/members`}
+                element={<ClubModalPeople data={data} />}
+              />
+            </Routes>
+          </>
+        )}
       </Box>
     </Modal>
   );

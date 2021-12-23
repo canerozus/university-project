@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { v4 as uuidv4 } from "uuid";
 
 const initialState = {
   data: [
@@ -8,6 +9,7 @@ const initialState = {
       bg: "https://www.remzihoca.com/storage/contents/1600171821-757171.jpg",
       clubs: [
         {
+          clubId: uuidv4(),
           clubImg:
             "https://pbs.twimg.com/profile_images/480050296702259200/mag5F_xR_400x400.png",
           clubName: "MT Bilkent",
@@ -35,8 +37,10 @@ const initialState = {
             },
           ],
           acceptOthers: true,
+          keyWords: ["research"],
         },
         {
+          clubId: uuidv4(),
           clubImg:
             "https://pbs.twimg.com/profile_images/1083258175963447296/ZBxRqk5o_400x400.jpg",
           clubName: "Outdoor Sports",
@@ -64,8 +68,10 @@ const initialState = {
             },
           ],
           acceptOthers: true,
+          keyWords: ["sport"],
         },
         {
+          clubId: uuidv4(),
           clubImg:
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_fDnrffcoVUYZBH_WLWJg72n4QXuf_K3ZDQ&usqp=CAU",
           clubName: "Google Developer Student Clubs",
@@ -93,6 +99,7 @@ const initialState = {
             },
           ],
           acceptOthers: true,
+          keyWords: ["technology"],
         },
       ],
     },
@@ -102,6 +109,7 @@ const initialState = {
       bg: "https://www.remzihoca.com/storage/contents/1600952265-962331.jpg",
       clubs: [
         {
+          clubId: uuidv4(),
           clubImg:
             "https://yt3.ggpht.com/ytc/AKedOLTYHv-q5_DSi0zRGNOS9KZZte6j0K4MONB8bWtdkQ=s900-c-k-c0x00ffffff-no-rj",
           clubName: "MT ITU",
@@ -129,8 +137,10 @@ const initialState = {
             },
           ],
           acceptOthers: true,
+          keyWords: ["research"],
         },
         {
+          clubId: uuidv4(),
           clubImg:
             "https://mir-s3-cdn-cf.behance.net/project_modules/fs/85b79097876423.5ed46890ad61a.png",
           clubName: "English Speaking Club",
@@ -158,8 +168,10 @@ const initialState = {
             },
           ],
           acceptOthers: false,
+          keyWords: ["language"],
         },
         {
+          clubId: uuidv4(),
           clubImg:
             "https://itukuluplerbirligi.com/wp-content/uploads/2019/11/itubees-logo1.png",
           clubName: "ITU Bees",
@@ -187,18 +199,55 @@ const initialState = {
             },
           ],
           acceptOthers: false,
+          keyWords: ["sport"],
+          members:[]
         },
       ],
     },
   ],
+  searchResults: [],
 };
 
 const universitiesSlice = createSlice({
   name: "activities",
   initialState,
-  reducers: {},
+  reducers: {
+    addClub: (state, action) => {
+      state.data[action.payload.universityIndex].clubs.push({
+        clubId: uuidv4(),
+        clubImg:
+          "https://itukuluplerbirligi.com/wp-content/uploads/2019/11/itubees-logo1.png",
+        clubName: action.payload.name,
+        type: action.payload.type,
+        school: state.data[action.payload.universityIndex].name,
+        about: action.payload.information,
+        contact: {
+          contactImg:
+            "https://images.unsplash.com/photo-1532074205216-d0e1f4b87368?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTl8fHByb2ZpbGV8ZW58MHx8MHx8&w=1000&q=80",
+          contactName: "Lorem Ipsum",
+          contactDesc:
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+        },
+        announcements: [],
+        acceptOthers: action.payload.acceptOthers,
+        keyWords: action.payload.keyWords,
+      });
+    },
+    findClubs: (state, action) => {
+      state.searchResults = [];
+      state.data.forEach((item) => {
+        item.clubs.forEach((item2) => {
+          if (item2.keyWords.includes(action.payload)) {
+            state.searchResults.push(item2);
+          }
+        });
+      });
+    },
+    
+  },
 });
 
 // Action creators are generated for each case reducer function
 
 export default universitiesSlice.reducer;
+export const { addClub, findClubs } = universitiesSlice.actions;
