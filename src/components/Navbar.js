@@ -91,9 +91,7 @@ export default function PrimarySearchAppBar() {
     dispatch(findClubs(e.target.value.trim().toLowerCase()));
   };
 
-  useEffect(() => {
-    console.log(searchResults);
-  }, [searchResults]);
+
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);

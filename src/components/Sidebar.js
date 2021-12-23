@@ -51,7 +51,7 @@ function Sidebar() {
             backgroundColor: "white",
             display: "flex",
             alignItems: "center",
-            overflowY: "scroll",
+            overflowY: "auto",
             justifyContent: "center",
             flexDirection: "column",
           }}
@@ -135,7 +135,7 @@ function Sidebar() {
             backgroundColor: "white",
             display: "flex",
             alignItems: "center",
-            overflowX: "hidden",
+            overflowX: "auto",
             flexDirection: "column",
           }}
         >
@@ -165,7 +165,7 @@ function Sidebar() {
                 <p
                   style={{
                     overFlowX: "hidden",
-                    overflowY: "scroll",
+                    overflowY: "auto",
                     height: "70px",
                     margin: "0",
                   }}

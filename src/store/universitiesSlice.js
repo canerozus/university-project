@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { v4 as uuidv4 } from "uuid";
 
 const initialState = {
   data: [
@@ -8,6 +9,7 @@ const initialState = {
       bg: "https://www.remzihoca.com/storage/contents/1600171821-757171.jpg",
       clubs: [
         {
+          clubId: uuidv4(),
           clubImg:
             "https://pbs.twimg.com/profile_images/480050296702259200/mag5F_xR_400x400.png",
           clubName: "MT Bilkent",
@@ -38,6 +40,7 @@ const initialState = {
           keyWords: ["research"],
         },
         {
+          clubId: uuidv4(),
           clubImg:
             "https://pbs.twimg.com/profile_images/1083258175963447296/ZBxRqk5o_400x400.jpg",
           clubName: "Outdoor Sports",
@@ -68,6 +71,7 @@ const initialState = {
           keyWords: ["sport"],
         },
         {
+          clubId: uuidv4(),
           clubImg:
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_fDnrffcoVUYZBH_WLWJg72n4QXuf_K3ZDQ&usqp=CAU",
           clubName: "Google Developer Student Clubs",
@@ -105,6 +109,7 @@ const initialState = {
       bg: "https://www.remzihoca.com/storage/contents/1600952265-962331.jpg",
       clubs: [
         {
+          clubId: uuidv4(),
           clubImg:
             "https://yt3.ggpht.com/ytc/AKedOLTYHv-q5_DSi0zRGNOS9KZZte6j0K4MONB8bWtdkQ=s900-c-k-c0x00ffffff-no-rj",
           clubName: "MT ITU",
@@ -135,6 +140,7 @@ const initialState = {
           keyWords: ["research"],
         },
         {
+          clubId: uuidv4(),
           clubImg:
             "https://mir-s3-cdn-cf.behance.net/project_modules/fs/85b79097876423.5ed46890ad61a.png",
           clubName: "English Speaking Club",
@@ -165,6 +171,7 @@ const initialState = {
           keyWords: ["language"],
         },
         {
+          clubId: uuidv4(),
           clubImg:
             "https://itukuluplerbirligi.com/wp-content/uploads/2019/11/itubees-logo1.png",
           clubName: "ITU Bees",
@@ -193,6 +200,7 @@ const initialState = {
           ],
           acceptOthers: false,
           keyWords: ["sport"],
+          members:[]
         },
       ],
     },
@@ -206,6 +214,7 @@ const universitiesSlice = createSlice({
   reducers: {
     addClub: (state, action) => {
       state.data[action.payload.universityIndex].clubs.push({
+        clubId: uuidv4(),
         clubImg:
           "https://itukuluplerbirligi.com/wp-content/uploads/2019/11/itubees-logo1.png",
         clubName: action.payload.name,
@@ -234,6 +243,7 @@ const universitiesSlice = createSlice({
         });
       });
     },
+    
   },
 });
 

@@ -2,7 +2,7 @@ import { Fab, IconButton, Modal, Typography } from "@material-ui/core";
 import { Image } from "@material-ui/icons";
 import { Avatar, Box, Stack } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import HomeIcon from "@mui/icons-material/Home";
 import EventIcon from "@mui/icons-material/Event";
@@ -17,6 +17,7 @@ import CreateClubModal from "./CreateClubModal";
 import { setClub, setOpenModal } from "../store/clubSlice";
 
 export default function Clubs() {
+  const navigate = useNavigate();
   const universitiesData = useSelector((state) => state.universities.data);
   const location = useLocation().pathname.split("/")[1];
   const [isLoading, setLoading] = useState(true);
@@ -70,7 +71,7 @@ export default function Clubs() {
             sx={{
               px: 30,
               py: 10,
-              overflowY: "scroll",
+              overflowY: "auto",
               width: "100%",
               height: "93.4vh",
               display: "flex",
@@ -91,9 +92,9 @@ export default function Clubs() {
                     cursor: "pointer",
                   }}
                   onClick={() => {
+                    navigate(`/${location}/${item.clubId}`);
                     dispatch(setClub(item));
-                    dispatch(setOpenModal(true));
-                    console.log(openModal);
+
                   }}
                 >
                   <Box

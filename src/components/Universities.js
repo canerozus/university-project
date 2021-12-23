@@ -6,9 +6,7 @@ import { useSelector } from "react-redux";
 
 export default function Universities() {
   const { data } = useSelector((state) => state.universities);
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
+
   return (
     <Box
       sx={{
@@ -21,7 +19,7 @@ export default function Universities() {
         justifyContent: "center",
         flexWrap: "wrap",
         boxShadow: "-2px 0px 7px 3px #aaaaaa;",
-        overflowY: "scroll",
+        overflowY: "auto",
       }}
     >
       {data?.map((item, index) => {
