@@ -10,24 +10,22 @@ import {
 } from "@mui/material";
 import React from "react";
 
-function Event({ show, setShow }) {
+function Event({ show, setShow, children }) {
   const handleClose = () => {
     setShow(false);
   };
   return (
+
     <Dialog open={show} onClose={handleClose}>
-      <DialogTitle>Add Event</DialogTitle>
-      <form>
+      <DialogTitle sx={{textAlign:'center'}}>Add Event</DialogTitle>
         <DialogContent>
-          <TextField placeholder="Title" />
-          <TextField placeholder="Amount" />
+          {children}
         </DialogContent>
-        <DialogActions>
-          <Button>Add</Button>
-          <Button onClick={handleClose}>Cancel</Button>
-        </DialogActions>
-      </form>
-    </Dialog>
+
+
+    </Dialog >
+
+
   );
 }
 
