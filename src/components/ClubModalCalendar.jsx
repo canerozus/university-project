@@ -9,8 +9,7 @@ import { useState } from 'react';
 import Event from './Event';
 import { FormControl, Switch } from '@material-ui/core';
 import { InputLabel, MenuItem, OutlinedInput, Select, Stack, TextField, Typography } from '@mui/material';
-import { useDispatch } from 'react-redux';
-import { useForm, submitHandler } from 'react-hook-form'
+
 
 const style = {
     position: 'absolute',
@@ -25,7 +24,7 @@ const style = {
 };
 
 
-export default function BasicModal({ open, close }) {
+export default function ClubModalCalendar({ open, close }) {
     const [show, setShow] = useState(false);
     const [type, setType] = useState("Required");
     const [admin, setAdmin] = useState(false);
@@ -33,37 +32,42 @@ export default function BasicModal({ open, close }) {
 
 
     const handleDateClick = () => {
-        
+
         setShow(true)
     }
 
 
     return (
-        <div>
 
-            <Modal
-                open={open}
-                onClose={() => { close(false) }}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
+        <Box
+            sx={{
+                display: "flex",
+                justifyContent: "center",
+            }}
+        >
+            <Box
+                sx={{
+                    width: "900px",
+                    height: "500px",
+                    backgroundColor: "#2074d4",
+                    border: "3px solid black",
+                    p: 1,
+                }}
+                alignItems={"center"}
+
             >
                 <Box
                     sx={{
-                        position: "absolute",
-                        top: "50%",
-                        left: "50%",
-                        transform: "translate(-50%, -50%)",
-                        border: "solid 3px black",
+                        width: "100%",
+                        height: "100%",
                         backgroundColor: "#f8e4e4",
-                        width: "1600px",
-                        height: "900px",
-                        p: 6,
+                        overflowY: "auto",
                     }}
                 >
                     <Event show={show} setShow={setShow} >
-                        <Box sx={{ width: '450px', height: '500px', display: 'flex', flexDirection: 'column' }}>
-                            
-                                <FormControl >
+                        <Box sx={{  display: 'flex', flexDirection: 'column' }}>
+
+                            <FormControl >
                                 <form width='100%'>
                                     <Box sx={{ width: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px' }}>
                                         <InputLabel>Name :</InputLabel>
@@ -110,10 +114,10 @@ export default function BasicModal({ open, close }) {
                                     <Button variant="contained" sx={{ width: '100%', marginTop: '50px' }} type='submit'>
                                         Create
                                     </Button>
-                                    </form>
+                                </form>
 
-                                </FormControl>
-                            
+                            </FormControl>
+
 
                         </Box>
                     </Event>
@@ -122,18 +126,16 @@ export default function BasicModal({ open, close }) {
                         sx={{ height: '100%', width: '100%' }}
                         plugins={[dayGridPlugin, interactionPlugin]}
                         dateClick={handleDateClick}
-                        
+
 
                     >
-
-
-
-
                     </FullCalendar>
 
 
                 </Box>
-            </Modal>
-        </div>
+            </Box>
+        </Box>
+
     );
 }
+

@@ -13,6 +13,8 @@ import { setClub, setOpenModal } from "../store/clubSlice";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import ClubModalHome from "./ClubModalHome";
 import ClubModalPeople from "./ClubModalPeople";
+import ClubModalSettings from "./ClubModalSettings";
+import ClubModalCalendar from "./ClubModalCalendar";
 export default function ClubModal() {
   const navigate = useNavigate();
   const clubLocation = useLocation().pathname.split("/")[2];
@@ -76,7 +78,7 @@ export default function ClubModal() {
           }}
         />
 
-{isLoading ? (
+        {isLoading ? (
           <Box
             sx={{
               width: "100%",
@@ -139,7 +141,13 @@ export default function ClubModal() {
                   alignItems="center"
                   sx={{ cursor: "pointer" }}
                 >
-                  <EventIcon fontSize="large" style={{ color: "#2074d4" }} />
+                  <EventIcon fontSize="large" style={{ color: "#2074d4" }}
+                    onClick={() => {
+                      navigate(
+                        `/${universityLocation}/${clubLocation}/calendar`
+                      );
+                    }}
+                  />
                   <Typography variant="body1">Calendar</Typography>
                 </Stack>
                 <Stack
@@ -163,7 +171,13 @@ export default function ClubModal() {
                   alignItems="center"
                   sx={{ cursor: "pointer" }}
                 >
-                  <SettingsIcon fontSize="large" style={{ color: "#2074d4" }} />
+                  <SettingsIcon fontSize="large" style={{ color: "#2074d4" }}
+                    onClick={() => {
+                      navigate(
+                        `/${universityLocation}/${clubLocation}/settings`
+                      );
+                    }}
+                  />
                   <Typography variant="body1">Settings</Typography>
                 </Stack>
                 <Stack
@@ -180,11 +194,20 @@ export default function ClubModal() {
               </Stack>
             </Box>
             <Routes>
-            <Route path={`/`} element={<ClubModalHome data={data} />} />
+              <Route path={`/`} element={<ClubModalHome data={data} />} />
+              <Route
+                path={`/calendar`}
+                element={<ClubModalCalendar />}
+              />
               <Route
                 path={`/members`}
                 element={<ClubModalPeople data={data} />}
               />
+              <Route
+                path={`/settings`}
+                element={<ClubModalSettings />}
+              />
+
             </Routes>
           </>
         )}
