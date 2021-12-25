@@ -1,7 +1,7 @@
 import { Box, Input, Typography } from "@material-ui/core";
 import { Search } from "@material-ui/icons";
 import React, { useEffect, useState } from "react";
-import { data as MembersDatabase} from "../data";
+import { data as MembersDatabase } from "../data";
 import { Stack } from "@mui/material";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
@@ -14,9 +14,16 @@ import {
   MenuList,
   Paper,
 } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import ProfileModal from "./ProfileModal";
+import { setOpenProfilModal, setProfilData } from "../store/profilSlice";
 
 export default function ClubModalPeople({ data }) {
   const [memberData, setMemberData] = useState([]);
+  const dispatch = useDispatch();
+  const profilData = useSelector((state) => state.profil.data);
+  const { openProfilModal } = useSelector((state) => state.profil);
+
   useEffect(() => {
     setMemberData(
       MembersDatabase.filter((item) => {
@@ -25,7 +32,6 @@ export default function ClubModalPeople({ data }) {
     );
   }, [data]);
 
-  useEffect(() => {}, [memberData]);
   return (
     <Box
       alignItems={"center"}
@@ -69,7 +75,13 @@ export default function ClubModalPeople({ data }) {
           <Divider />
           {memberData.map((item) => {
             return (
-              <Box sx={{ cursor: "pointer" }}>
+              <Box
+                sx={{ cursor: "pointer" }}
+                onClick={() => {
+                  dispatch(setProfilData(item));
+                  dispatch(setOpenProfilModal(true));
+                }}
+              >
                 <Stack
                   direction="row"
                   spacing={2}
@@ -89,6 +101,7 @@ export default function ClubModalPeople({ data }) {
           })}
         </Box>
       </Box>
+      <ProfileModal open={openProfilModal} />
     </Box>
   );
 }
