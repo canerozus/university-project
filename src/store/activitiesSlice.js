@@ -30,15 +30,20 @@ const initialState = {
       day: "Tuesday",
       time: "18:00",
     },
-  ],
+  ],  
 };
 
 const activitiesSlice = createSlice({
   name: "activities",
   initialState,
-  reducers: {},
+  reducers: {
+    setActivityData:(state,action) => {
+      state.activityData = action.payload;
+    }
+  },
 });
 
 // Action creators are generated for each case reducer function
 
 export default activitiesSlice.reducer;
+export const {setActivityData} = activitiesSlice.actions;

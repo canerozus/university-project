@@ -15,17 +15,26 @@ function Event({ show, setShow, children }) {
     setShow(false);
   };
   return (
-
-    <Dialog open={show} onClose={handleClose}>
-      <DialogTitle sx={{textAlign:'center'}}>Add Event</DialogTitle>
-        <DialogContent>
-          {children}
-        </DialogContent>
-
-
-    </Dialog >
-
-
+    <Modal
+      open={show}
+      onClose={handleClose}
+      sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
+    >
+      <Box
+        sx={{
+          width: "500px",
+          minHeight: "550px",
+          maxHeight:'800px',
+          backgroundColor: "white",
+          border: "3px solid black",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        {children}
+      </Box>
+    </Modal>
   );
 }
 

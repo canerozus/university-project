@@ -9,7 +9,7 @@ const initialState = {
       bg: "https://www.remzihoca.com/storage/contents/1600171821-757171.jpg",
       clubs: [
         {
-          clubId: uuidv4(),
+          clubId: 1,
           clubImg:
             "https://pbs.twimg.com/profile_images/480050296702259200/mag5F_xR_400x400.png",
           clubName: "MT Bilkent",
@@ -37,11 +37,24 @@ const initialState = {
               sent: new Date(),
             },
           ],
+          activities: [
+            {
+              activityId: 1,
+              clubId: 1,
+              title: "Research Day",
+              information: "Time to research some information.",
+              start: "2021-12-20",
+              url: "https://pbs.twimg.com/profile_images/480050296702259200/mag5F_xR_400x400.png",
+              time: "18.30",
+              priority:'Non-Required'
+            },
+          ],
+
           acceptOthers: true,
           keyWords: ["research"],
         },
         {
-          clubId: uuidv4(),
+          clubId: 2,
           clubImg:
             "https://pbs.twimg.com/profile_images/1083258175963447296/ZBxRqk5o_400x400.jpg",
           clubName: "Outdoor Sports",
@@ -69,11 +82,24 @@ const initialState = {
               sent: new Date(),
             },
           ],
+          activities: [
+            {
+              activityId: 2,
+              clubId: 2,
+              title: "Sporst Day",
+              information: "Championship starts. Get Ready Everyone.",
+              start: "2021-12-18",
+              url: "https://pbs.twimg.com/profile_images/1083258175963447296/ZBxRqk5o_400x400.jpg",
+              time: "18.30",
+              priority:'Non-Required'
+            },
+          ],
+
           acceptOthers: true,
           keyWords: ["sport"],
         },
         {
-          clubId: uuidv4(),
+          clubId: 3,
           clubImg:
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_fDnrffcoVUYZBH_WLWJg72n4QXuf_K3ZDQ&usqp=CAU",
           clubName: "Google Developer Student Clubs",
@@ -101,6 +127,19 @@ const initialState = {
               sent: new Date(),
             },
           ],
+          activities: [
+            {
+              activityId: 3,
+              clubId: 3,
+              title: "Development Day",
+              information: "Millions of developers are united.",
+              start: "2021-12-24",
+              url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_fDnrffcoVUYZBH_WLWJg72n4QXuf_K3ZDQ&usqp=CAU",
+              time: "18.30",
+              priority:'Non-Required'
+            },
+          ],
+
           acceptOthers: true,
           keyWords: ["technology"],
         },
@@ -112,7 +151,7 @@ const initialState = {
       bg: "https://www.remzihoca.com/storage/contents/1600952265-962331.jpg",
       clubs: [
         {
-          clubId: uuidv4(),
+          clubId: 4,
           clubImg:
             "https://yt3.ggpht.com/ytc/AKedOLTYHv-q5_DSi0zRGNOS9KZZte6j0K4MONB8bWtdkQ=s900-c-k-c0x00ffffff-no-rj",
           clubName: "MT ITU",
@@ -140,11 +179,23 @@ const initialState = {
               sent: new Date(),
             },
           ],
+          activities: [
+            {
+              activityId: 4,
+              clubId: 4,
+              title: "Research Day",
+              information: "Time to research some information.",
+              start: "2021-12-20",
+              url: "https://yt3.ggpht.com/ytc/AKedOLTYHv-q5_DSi0zRGNOS9KZZte6j0K4MONB8bWtdkQ=s900-c-k-c0x00ffffff-no-rj",
+              time: "18.30",
+              priority:'Non-Required'
+            },
+          ],
           acceptOthers: true,
           keyWords: ["research"],
         },
         {
-          clubId: uuidv4(),
+          clubId: 5,
           clubImg:
             "https://mir-s3-cdn-cf.behance.net/project_modules/fs/85b79097876423.5ed46890ad61a.png",
           clubName: "English Speaking Club",
@@ -172,11 +223,24 @@ const initialState = {
               sent: new Date(),
             },
           ],
+          activities: [
+            {
+              activityId: 5,
+              clubId: 5,
+              title: "Language Day",
+              information: "Different Languages are here to server you.",
+              start: "2021-12-12",
+              url: "https://mir-s3-cdn-cf.behance.net/project_modules/fs/85b79097876423.5ed46890ad61a.png",
+              time: "18.30",
+              priority:'Non-Required'
+            },
+          ],
+
           acceptOthers: false,
           keyWords: ["language"],
         },
         {
-          clubId: uuidv4(),
+          clubId: 6,
           clubImg:
             "https://itukuluplerbirligi.com/wp-content/uploads/2019/11/itubees-logo1.png",
           clubName: "ITU Bees",
@@ -204,6 +268,19 @@ const initialState = {
               sent: new Date(),
             },
           ],
+          activities: [
+            {
+              activityId: 6,
+              clubId: 6,
+              title: "Research Day",
+              information: "Time to research some information.",
+              start: "2021-12-20",
+              url: "https://itukuluplerbirligi.com/wp-content/uploads/2019/11/itubees-logo1.png",
+              time: "18.30",
+              priority:'Non-Required'
+            },
+          ],
+
           acceptOthers: false,
           keyWords: ["sport"],
           members: [],

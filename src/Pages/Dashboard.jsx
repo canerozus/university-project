@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Universities from "../components/Universities";
 import Sidebar from "../components/Sidebar";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
@@ -6,9 +6,11 @@ import Clubs from "../components/Clubs";
 import { Box } from "@mui/system";
 import CalendarModal from '../components/CalendarModal';
 import ClubModal from "../components/ClubModal";
+import { useSelector } from "react-redux";
 
 export default function Dashboard({openModal, setOpenModal}) {
 
+  
 
   return (
     <div
@@ -35,7 +37,7 @@ export default function Dashboard({openModal, setOpenModal}) {
             }
           />
         </Routes>
-        <CalendarModal open={openModal} close={setOpenModal} />
+        <CalendarModal/>
       </Box>
     </div>
   );

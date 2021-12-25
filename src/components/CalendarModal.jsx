@@ -1,139 +1,195 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Modal from '@mui/material/Modal';
-import FullCalendar from '@fullcalendar/react';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import interactionPlugin, { DateClickArg } from '@fullcalendar/interaction';
-import { useState } from 'react';
-import Event from './Event';
-import { FormControl, Switch } from '@material-ui/core';
-import { InputLabel, MenuItem, OutlinedInput, Select, Stack, TextField, Typography } from '@mui/material';
-import { useDispatch } from 'react-redux';
-import { useForm, submitHandler } from 'react-hook-form'
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Modal from "@mui/material/Modal";
+import FullCalendar from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import interactionPlugin, { DateClickArg } from "@fullcalendar/interaction";
+
+import { useEffect, useState } from "react";
+import Event from "./Event";
+import { FormControl, Switch } from "@material-ui/core";
+import {
+  InputLabel,
+  MenuItem,
+  OutlinedInput,
+  Select,
+  Stack,
+  TextField,
+  TextareaAutosize,
+  Typography,
+} from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { useForm, submitHandler } from "react-hook-form";
+import { setOpenCalendarModal } from "../store/myCalendarSlice";
+import { useNavigate } from "react-router-dom";
+import { setopenActivityModal, setActivityData } from "../store/activitySlice";
+import ActivityModal from "./ActivityModal";
 
 const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 4,
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
 };
 
+function flatten(arr) {
+  var flat = [];
+  for (var i = 0; i < arr.length; i++) {
+    flat = flat.concat(arr[i]);
+  }
+  return flat;
+}
 
-export default function BasicModal({ open, close }) {
-    const [show, setShow] = useState(false);
-    const [type, setType] = useState("Required");
-    const [admin, setAdmin] = useState(false);
-    const [selected, setSelected] = useState(new Date());
+export default function BasicModal() {
+  const { openActivityModal } = useSelector((state) => state.activity);
+  const navigate = useNavigate();
+  const { data } = useSelector((state) => state.universities);
+  const [events, setEvents] = useState([]);
+  const { openCalendarModal } = useSelector((state) => state.myCalendar);
+  const [finalData, setFinalData] = useState();
+  const dispatch = useDispatch();
+  const [show, setShow] = useState(false);
+  const [type, setType] = useState("Required");
+  const [admin, setAdmin] = useState(false);
+  const [selected, setSelected] = useState(new Date());
 
-
-    const handleDateClick = () => {
-        
-        setShow(true)
-    }
-
-
+  const renderEventContent = (eventInfo) => {
     return (
-        <div>
-
-            <Modal
-                open={open}
-                onClose={() => { close(false) }}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-            >
-                <Box
-                    sx={{
-                        position: "absolute",
-                        top: "50%",
-                        left: "50%",
-                        transform: "translate(-50%, -50%)",
-                        border: "solid 3px black",
-                        backgroundColor: "#f8e4e4",
-                        width: "1600px",
-                        height: "900px",
-                        p: 6,
-                    }}
-                >
-                    <Event show={show} setShow={setShow} >
-                        <Box sx={{ width: '450px', height: '500px', display: 'flex', flexDirection: 'column' }}>
-                            
-                                <FormControl >
-                                <form width='100%'>
-                                    <Box sx={{ width: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px' }}>
-                                        <InputLabel>Name :</InputLabel>
-                                        <OutlinedInput sx={{ width: '80%' }} ></OutlinedInput>
-                                    </Box>
-                                    <Box sx={{ width: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px' }}>
-                                        <InputLabel>Location :</InputLabel>
-                                        <OutlinedInput sx={{ width: '80%' }}></OutlinedInput>
-                                    </Box>
-                                    <Box sx={{ width: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center', marginBottom: '15px' }}>
-                                        <InputLabel>Priority</InputLabel>
-                                        <Select sx={{ width: '50%' }}
-                                            onChange={(e) => setType(e.target.value)}
-                                            defaultValue={type}
-                                            value={type}
-                                            direction='column'
-                                        >
-                                            <MenuItem value={'Require'}>Required</MenuItem>
-                                            <MenuItem value={'NotRequire'}>Not Required</MenuItem>
-                                        </Select>
-                                    </Box>
-                                    <Box sx={{ width: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', marginBottom: '15px' }}>
-                                        <InputLabel>Participants</InputLabel>
-                                        <Stack direction="row" spacing={1} alignItems="center">
-                                            <Switch
-                                                value={admin}
-                                                color='primary'
-                                                onClick={() => {
-                                                    setAdmin(!admin);
-                                                }}
-                                            />
-                                            {admin ? (
-                                                <Typography>Admin only</Typography>
-                                            ) : (
-                                                <Typography>Everyone</Typography>
-                                            )}
-                                        </Stack>
-                                    </Box>
-                                    <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', alignItems: 'center', marginBottom: '40px' }}>
-                                        <InputLabel>Information</InputLabel>
-                                        <TextField fullWidth id="fullWidth" ></TextField>
-                                    </Box>
-
-                                    <Button variant="contained" sx={{ width: '100%', marginTop: '50px' }} type='submit'>
-                                        Create
-                                    </Button>
-                                    </form>
-
-                                </FormControl>
-                            
-
-                        </Box>
-                    </Event>
-
-                    <FullCalendar
-                        sx={{ height: '100%', width: '100%' }}
-                        plugins={[dayGridPlugin, interactionPlugin]}
-                        dateClick={handleDateClick}
-                        
-
-                    >
-
-
-
-
-                    </FullCalendar>
-
-
-                </Box>
-            </Modal>
-        </div>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          cursor: "pointer",
+        }}        
+      >
+        <img alt="event" src={eventInfo.event.url} style={{ width: "90%" }} />
+      </div>
     );
+  };
+  useEffect(() => {
+    const clubs = data.map((item) => {
+      return item.clubs.map((item2) => {
+        return item2;
+      });
+    });
+    var final = flatten(clubs);
+    final = final.map((item) => {
+      return item.activities;
+    });
+    final = flatten(final);
+    setEvents(final);
+  }, [data]);
+
+  const handleDateClick = () => {
+    setShow(true);
+  };
+
+  return (
+    <div>
+      <Modal
+        open={openCalendarModal}
+        onClose={() => {
+          dispatch(setOpenCalendarModal(false));
+        }}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            border: "solid 3px black",
+            backgroundColor: "#f8e4e4",
+            width: "1600px",
+            height: "900px",
+            p: 6,
+            overflowY: "auto",
+          }}
+        >
+          <Event show={show} setShow={setShow}>
+            <form style={{ width: "100%", height: "100%", padding: "10px" }}>
+              <FormControl fullWidth>
+                <InputLabel sx={{ width: "100%" }}>Name: </InputLabel>
+                <OutlinedInput />
+              </FormControl>
+              <FormControl fullWidth>
+                <InputLabel>Location :</InputLabel>
+                <OutlinedInput sx={{ width: "100%" }}></OutlinedInput>
+              </FormControl>
+              <FormControl fullWidth>
+                <InputLabel>Priority</InputLabel>
+                <Select
+                  sx={{ width: "100%" }}
+                  onChange={(e) => setType(e.target.value)}
+                  defaultValue={type}
+                  value={type}
+                  direction="column"
+                >
+                  <MenuItem value={"Require"}>Required</MenuItem>
+                  <MenuItem value={"NotRequire"}>Not Required</MenuItem>
+                </Select>
+              </FormControl>
+              <FormControl fullWidth>
+                <InputLabel>Participants</InputLabel>
+                <Select
+                  sx={{ width: "100%" }}
+                  onChange={(e) => setType(e.target.value)}
+                  defaultValue={type}
+                  value={type}
+                  direction="column"
+                >
+                  <MenuItem value={"admin"}>Only Admins</MenuItem>
+                  <MenuItem value={"everyone"}>Everyone</MenuItem>
+                </Select>
+              </FormControl>
+              <FormControl fullWidth>
+                <InputLabel>Information</InputLabel>
+                <TextareaAutosize
+                  sx={{ padding: "15px" }}
+                  style={{ width: "100%", height: "100px" }}
+                />
+              </FormControl>
+
+              <Button
+                variant="contained"
+                sx={{ width: "100%", mt: "20px" }}
+                type="submit"
+              >
+                Create
+              </Button>
+            </form>
+          </Event>
+
+          <FullCalendar
+            plugins={[dayGridPlugin, interactionPlugin]}
+            dateClick={handleDateClick}
+            eventContent={renderEventContent}
+            eventClick={(info) => {
+              info.jsEvent.preventDefault();
+              dispatch(
+                setActivityData({
+                  title: info.event.title,
+                  url: info.event.url,
+                  ...info.event.extendedProps,
+                })
+              );
+              dispatch(setopenActivityModal(true));
+            }}
+            eventBackgroundColor="#ffe4e4"
+            eventBorderColor="#ffe4e4"
+            events={events}
+          ></FullCalendar>
+          <ActivityModal open={openActivityModal} />
+        </Box>
+      </Modal>
+    </div>
+  );
 }

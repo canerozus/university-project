@@ -38,6 +38,7 @@ import {
 import { findClubs } from "../store/universitiesSlice";
 import { useEffect, useState } from "react";
 import { setClub, setOpenModal } from "../store/clubSlice";
+import { setOpenCalendarModal } from "../store/myCalendarSlice";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -82,14 +83,13 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function PrimarySearchAppBar({ setOpenModal }) {
   const { profilPicture } = useSelector((state) => state.user);
   const { searchResults } = useSelector((state) => state.universities);
-  
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
 
   const handleSearchChange = (e) => {
-    
     dispatch(findClubs(e.target.value.trim().toLowerCase()));
   };
 
@@ -203,7 +203,6 @@ export default function PrimarySearchAppBar({ setOpenModal }) {
             aria-label="show 4 new mails"
             color="inherit"
             onClick={() => {
-              
               navigate("/");
             }}
           >
@@ -235,7 +234,6 @@ export default function PrimarySearchAppBar({ setOpenModal }) {
                         <>
                           <MenuItem
                             onClick={() => {
-                                                            
                               dispatch(setClub(item));
                               navigate(`/${item.schoolId}/${item.clubId}`);
                             }}
@@ -272,7 +270,7 @@ export default function PrimarySearchAppBar({ setOpenModal }) {
               size="large"
               color="inherit"
               onClick={() => {
-                setOpenModal(true);
+                dispatch(setOpenCalendarModal(true));
               }}
             >
               <EventIcon size="large" /*Calendar Modal*/ />
