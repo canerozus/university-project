@@ -114,6 +114,7 @@ export default function BasicModal() {
             overflowY: "auto",
           }}
         >
+          
           <FullCalendar
             plugins={[dayGridPlugin, interactionPlugin]}
             dateClick={handleDateClick}

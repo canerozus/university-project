@@ -1,3 +1,4 @@
+
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
@@ -18,6 +19,8 @@ import {
   Typography,
 } from "@mui/material";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { setActivityData, setopenActivityModal } from "../store/activitySlice";
 
 const style = {
   position: "absolute",
@@ -46,10 +49,7 @@ export default function ClubModalCalendar({ open, close, clubData }) {
   const [type, setType] = useState("Required");
   const [admin, setAdmin] = useState(false);
   const [selected, setSelected] = useState(new Date());
-
-  useEffect(() => {
-    console.log(clubData);
-  }, [clubData]);
+  const dispatch = useDispatch()
 
   const renderEventContent = (eventInfo) => {
     return (
@@ -57,7 +57,8 @@ export default function ClubModalCalendar({ open, close, clubData }) {
         style={{
           display: "flex",
           alignItems: "center",
-          justifyContent: "center",          
+          justifyContent: "center",
+          cursor: "pointer",
         }}
       >
         <img alt="event" src={eventInfo.event.url} style={{ width: "90%" }} />
@@ -65,7 +66,7 @@ export default function ClubModalCalendar({ open, close, clubData }) {
     );
   };
 
-  useEffect(() => {
+ useEffect(() => {
     const clubs = data.map((item) => {
       return item.clubs.map((item2) => {
         return item2;
@@ -76,11 +77,10 @@ export default function ClubModalCalendar({ open, close, clubData }) {
       return item.activities;
     });
     final = flatten(final);
-    setEvents(
-      final.filter((item) => {
-        return item.clubId == clubData.clubId;
-      })
-    );
+    
+    setEvents(final.filter(item => {
+      return item.clubId == clubData.clubId
+    }));
   }, [data, clubData]);
 
   const handleDateClick = () => {
@@ -115,13 +115,20 @@ export default function ClubModalCalendar({ open, close, clubData }) {
           <Event show={show} setShow={setShow}/>
             
           
-
           <FullCalendar
             plugins={[dayGridPlugin, interactionPlugin]}
             dateClick={handleDateClick}
             eventContent={renderEventContent}
             eventClick={(info) => {
               info.jsEvent.preventDefault();
+              dispatch(
+                setActivityData({
+                  title: info.event.title,
+                  url: info.event.url,
+                  ...info.event.extendedProps,
+                })
+              );
+              dispatch(setopenActivityModal(true));
             }}
             eventBackgroundColor="#ffe4e4"
             eventBorderColor="#ffe4e4"

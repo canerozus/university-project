@@ -17,7 +17,7 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 
-function Event({ show, setShow, children }) {
+function Event({ show, setShow }) {
   const [type, setType] = useState("");
   const [participant, setParticipant] = useState("");
   const [name, setName] = useState("");
@@ -47,12 +47,7 @@ function Event({ show, setShow, children }) {
           <Stack spacing={2}>
             <FormControl fullWidth>
               <InputLabel htmlFor="name">Name:</InputLabel>
-              <OutlinedInput
-                id="name"
-                label="Name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
+              <OutlinedInput id="name" label="Name" />
             </FormControl>
             <FormControl fullWidth>
               <InputLabel>Location :</InputLabel>
