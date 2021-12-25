@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Box from "@mui/material/Box";
 import ArrowCircleDownIcon from "@mui/icons-material/ArrowCircleDown";
 import { styled } from "@mui/material/styles";
 import { useDispatch, useSelector } from "react-redux";
-import activitiesSlice from "../store/activitiesSlice";
+import activitiesSlice, { setActivityData } from "../store/activitiesSlice";
 import announcmentsSlice from "../store/announcmentsSlice";
 
 const Div = styled("div")(({ theme }) => ({
@@ -15,6 +15,9 @@ const Div = styled("div")(({ theme }) => ({
 }));
 
 function Sidebar() {
+  const dispatch = useDispatch();
+  
+  
   const activities = useSelector((state) => state.activities.data);
   const announcements = useSelector((state) => state.announcements.data);
 

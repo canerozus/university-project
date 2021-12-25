@@ -1,7 +1,7 @@
 import { Box, Input, Typography } from "@material-ui/core";
 import { Search } from "@material-ui/icons";
 import React, { useEffect, useState } from "react";
-import MembersDatabase from "../data";
+import { data as MembersDatabase} from "../data";
 import { Stack } from "@mui/material";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import ChatBubbleIcon from "@mui/icons-material/ChatBubble";

@@ -1,7 +1,7 @@
 import faker from "faker";
 import { v4 as uuidv4 } from "uuid";
 
-const data = [
+export const data = [
   {
     id: uuidv4(),
     name: faker.name.findName(),
@@ -88,4 +88,4 @@ const data = [
   },
 ];
 
-export default data;
+

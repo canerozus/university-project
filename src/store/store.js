@@ -5,6 +5,8 @@ import activitiesSlice from "./activitiesSlice";
 import universitiesSlice from "./universitiesSlice";
 import clubSlice from "./clubSlice";
 import { getDefaultMiddleware } from "@reduxjs/toolkit";
+import myCalendarSlice from "./myCalendarSlice";
+import activitySlice from "./activitySlice";
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +15,8 @@ export const store = configureStore({
     announcements: announcmentsSlice,
     universities: universitiesSlice,
     club: clubSlice,
+    myCalendar: myCalendarSlice,
+    activity: activitySlice
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

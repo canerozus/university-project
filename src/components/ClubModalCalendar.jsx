@@ -122,8 +122,7 @@ export default function ClubModalCalendar({ open, close }) {
                         </Box>
                     </Event>
 
-                    <FullCalendar
-                        sx={{ height: '100%', width: '100%' }}
+                    <FullCalendar                        
                         plugins={[dayGridPlugin, interactionPlugin]}
                         dateClick={handleDateClick}
 
