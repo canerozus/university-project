@@ -1,11 +1,11 @@
 import { Avatar, Box, Modal, Stack, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import PersonRemoveIcon from "@mui/icons-material/PersonRemove";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
 import { useDispatch, useSelector } from "react-redux";
 import { setOpenProfilModal } from "../store/profilSlice";
 import { Divider } from "@material-ui/core";
+import BlockIcon from '@mui/icons-material/Block';
 
 function ProfileModal({ open }) {
   const { data } = useSelector((state) => state.profil);
@@ -113,8 +113,8 @@ function ProfileModal({ open }) {
                 spacing={2}
                 sx={{ cursor: "pointer" }}
               >
-                <PersonRemoveIcon style={{ color: "#2074d4" }} />
-                <p> Remove Friend</p>
+                <BlockIcon style={{ color: "#2074d4" }} />
+                <p> Block</p>
               </Stack>
               <Stack
                 direction={"row"}

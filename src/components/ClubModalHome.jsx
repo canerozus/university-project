@@ -20,13 +20,13 @@ export default function ClubModalHome({ data }) {
       <Box>
         <Box
           sx={{
-            border: "solid 3px purple",
+            border: "solid 3px #2074d4",
             width: "350px",
             height: "180px",
             py: 1,
             px: 2,
             overflowY: "auto",
-            backgroundColor: "#b0b4e4",
+            backgroundColor: "#66a6ed",
             mb: 5,
           }}
         >
@@ -57,7 +57,7 @@ export default function ClubModalHome({ data }) {
               </span>{" "}
             </Typography>
             <Box
-              backgroundColor="purple"
+              backgroundColor="#4a96ed"
               sx={{
                 cursor: "pointer",
                 width: "50px",
@@ -96,13 +96,13 @@ export default function ClubModalHome({ data }) {
       </Box>
       <Box
         sx={{
-          border: "solid 3px purple",
+          border: "solid 3px #2074d4",
           width: "550px",
           height: "380px",
           py: 2,
           px: 3,
           overflowY: "auto",
-          backgroundColor: "#b0b4e4",
+          backgroundColor: "#66a6ed",
         }}
       >
         <Stack spacing={4}>

@@ -21,18 +21,18 @@ export default function ClubModal() {
   const universityLocation = useLocation().pathname.split("/")[1];
   const { isLoading, data } = useSelector((state) => state.club);
 
-  const UniversityData = useSelector((state) => state.universities.data);
+  const universityData = useSelector((state) => state.universities.data);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(
       setClub(
-        UniversityData[universityLocation].clubs.find(
+        universityData[universityLocation].clubs.find(
           (item) => item.clubId == clubLocation
         )
       )
     );
-  }, [clubLocation, universityLocation, UniversityData, dispatch]);
+  }, [clubLocation, universityLocation, universityData, dispatch]);
 
   useEffect(() => {
     return () => {
@@ -70,7 +70,7 @@ export default function ClubModal() {
             right: 5,
             top: 5,
             fontSize: 48,
-            color: "purple",
+            color: "#2074d4",
             cursor: "pointer",
           }}
           onClick={() => {
