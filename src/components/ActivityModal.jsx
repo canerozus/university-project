@@ -27,7 +27,7 @@ export default function ActivityModal({ open }) {
           height: "700px",
           border: "3px solid black",
           p: 5,
-          backgroundColor: "#b8b4e4",
+          backgroundColor: "#ffe4e4",
         }}
         alignItems={"center"}
       >

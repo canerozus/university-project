@@ -17,7 +17,7 @@ import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import Image from '../source/bgimg.png';
 
 const theme = createTheme();
 
@@ -57,13 +57,9 @@ export function Login() {
             sm={4}
             md={7}
             sx={{
-              backgroundImage: "url(https://source.unsplash.com/random)",
+              backgroundImage:`url(${Image})`,
               backgroundRepeat: "no-repeat",
-              backgroundColor: (t) =>
-                t.palette.mode === "light"
-                  ? t.palette.grey[50]
-                  : t.palette.grey[900],
-              backgroundSize: "cover",
+              backgroundSize:'auto',
               backgroundPosition: "center",
             }}
           />
