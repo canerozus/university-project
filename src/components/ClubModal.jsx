@@ -197,7 +197,7 @@ export default function ClubModal() {
               <Route path={`/`} element={<ClubModalHome data={data} />} />
               <Route
                 path={`/calendar`}
-                element={<ClubModalCalendar />}
+                element={<ClubModalCalendar clubData={data}/>}
               />
               <Route
                 path={`/members`}

@@ -66,7 +66,7 @@ export default function BasicModal() {
           alignItems: "center",
           justifyContent: "center",
           cursor: "pointer",
-        }}        
+        }}
       >
         <img alt="event" src={eventInfo.event.url} style={{ width: "90%" }} />
       </div>
@@ -114,60 +114,6 @@ export default function BasicModal() {
             overflowY: "auto",
           }}
         >
-          <Event show={show} setShow={setShow}>
-            <form style={{ width: "100%", height: "100%", padding: "10px" }}>
-              <FormControl fullWidth>
-                <InputLabel sx={{ width: "100%" }}>Name: </InputLabel>
-                <OutlinedInput />
-              </FormControl>
-              <FormControl fullWidth>
-                <InputLabel>Location :</InputLabel>
-                <OutlinedInput sx={{ width: "100%" }}></OutlinedInput>
-              </FormControl>
-              <FormControl fullWidth>
-                <InputLabel>Priority</InputLabel>
-                <Select
-                  sx={{ width: "100%" }}
-                  onChange={(e) => setType(e.target.value)}
-                  defaultValue={type}
-                  value={type}
-                  direction="column"
-                >
-                  <MenuItem value={"Require"}>Required</MenuItem>
-                  <MenuItem value={"NotRequire"}>Not Required</MenuItem>
-                </Select>
-              </FormControl>
-              <FormControl fullWidth>
-                <InputLabel>Participants</InputLabel>
-                <Select
-                  sx={{ width: "100%" }}
-                  onChange={(e) => setType(e.target.value)}
-                  defaultValue={type}
-                  value={type}
-                  direction="column"
-                >
-                  <MenuItem value={"admin"}>Only Admins</MenuItem>
-                  <MenuItem value={"everyone"}>Everyone</MenuItem>
-                </Select>
-              </FormControl>
-              <FormControl fullWidth>
-                <InputLabel>Information</InputLabel>
-                <TextareaAutosize
-                  sx={{ padding: "15px" }}
-                  style={{ width: "100%", height: "100px" }}
-                />
-              </FormControl>
-
-              <Button
-                variant="contained"
-                sx={{ width: "100%", mt: "20px" }}
-                type="submit"
-              >
-                Create
-              </Button>
-            </form>
-          </Event>
-
           <FullCalendar
             plugins={[dayGridPlugin, interactionPlugin]}
             dateClick={handleDateClick}
